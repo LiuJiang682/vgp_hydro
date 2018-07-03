@@ -1,0 +1,23 @@
+DEDJTR-																																		
+H001																																		
+H002																																		
+H003	Generated		15/02/2018																															
+H004	Reporting period end_date		15/02/2018																															
+H005			Otway Basin																															
+H0102	Field Site Name:	GSV - VGP																																
+H0200	Start_date_of_data_aquistion	19/10/2017																																
+H0201	End_date_of_data_acquistion	25/10/2017																																
+H0202	Data_format	VGPHYDRO																																
+H0203	Number_of_data_records	80																																
+H0300	Name_of_this_file	36715																																
+H0600	Sample_Code	Sample_Type																																
+H0601	WATER	Dissolved Gas																																
+H0800			Assay_Company																															
+H0801			Isotech																															
+H1000	Isotech Lab No:	Sample Name	Client - Matrix:	Sample Date	GC Date	MS Date	Compound	He	H2	Ar	O2	CO2	N2	CO	C1	C2	C2H4	C3	C3H6	iC4	nC4	iC5	nC5	C6+	d13CO2	d13C1	dDC1	Dissolved CH4 		Dissolved C2H6		Dissolved C3H8		Helium dilution
+H1001							Unit	%	%	%	%	%	%	%	%	%	%	%	%	%	%	%	%	%	‰	‰	‰	cc/L	mg/L	cc/L	mg/L	cc/L	mg/L	factor *
+H1003							LOR																											
+							Analysis Method	GC	GC	GC	GC	GC	GC	GC	GC	GC	GC	GC	GC	GC	GC	GC	GC	GC	MS	MS	MS	MS	MS	MS	MS	MS	MS	MS
+D	638466	141912	Dissolved Gas	19/10/2017	11/12/2017	15/01/2018		na	nd	1.59	6.61	8.70	75.08	nd	8.02	nd	nd	nd	nd	nd	nd	nd	nd	nd	-17.20	-60.99	-298.7	2.2	1.4	< 0.0001	< 0.0002	< 0.0001	< 0.0002	0.79
+D	638467	96052	Dissolved Gas	24/10/2017	11/12/2017	11/01/2018		na	nd	1.70	10.56	10.12	77.61	nd	0.0061	nd	nd	nd	nd	nd	nd	nd	nd	nd	-18.79			0.0013	0.00088	< 0.0001	< 0.0002	< 0.0001	< 0.0002	0.82
+D	638468	95080	Dissolved Gas	25/10/2017	11/12/2017	11/01/2018		na	nd	1.74	9.95	3.47	84.82	nd	0.0217	nd	nd	nd	nd	nd	nd	nd	nd	nd	-21.72			0.0056	0.0037	< 0.0001	< 0.0002	< 0.0001	< 0.0002	0.80

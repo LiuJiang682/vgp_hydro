@@ -4,9 +4,12 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.util.CollectionUtils;
 
 import au.gov.vic.ecodev.mrt.template.processor.TemplateProcessor;
 import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext;
+import au.gov.vic.ecodev.mrt.template.processor.exception.TemplateProcessorException;
+import au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.VgpHydroFileParser;
 
 public class VgpHydroCustomProcessor implements TemplateProcessor {
 	
@@ -16,9 +19,24 @@ public class VgpHydroCustomProcessor implements TemplateProcessor {
 	private List<File> files;
 
 	@Override
-	public void processFile() {
+	public void processFile() throws TemplateProcessorException {
 		LOGGER.info("VgpHydroCustomProcessor.processFile");
+		if (CollectionUtils.isEmpty(files)) {
+			throw new TemplateProcessorException("No file to process!");
+		}
+
+		if (null == templateProcessorContext) {
+			throw new TemplateProcessorException("No context present!");
+		}
 		
+		try {
+			for (File file : files) {
+				VgpHydroFileParser vgpHuydroFileParser = new VgpHydroFileParser(file, templateProcessorContext);
+				vgpHuydroFileParser.parse();
+			}
+		} catch (Exception e) {
+			throw new TemplateProcessorException(e.getMessage(), e);
+		}
 	}
 
 	@Override
