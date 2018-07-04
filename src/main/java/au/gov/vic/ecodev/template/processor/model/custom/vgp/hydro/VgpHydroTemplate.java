@@ -7,7 +7,7 @@ import java.util.Map;
 
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 
-public class HydroTemplate implements Template {
+public class VgpHydroTemplate implements Template {
 
 	private Map<String, List<String>> datas = new HashMap<>();
 	
