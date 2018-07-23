@@ -20,7 +20,7 @@ import au.gov.vic.ecodev.mrt.template.processor.exception.TemplateProcessorExcep
 import au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.VgpHydroFileParser;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(VgpHydroCustomProcessor.class)
+@PrepareForTest(VgpHydroLocationMetaProcessor.class)
 public class VgpHydroCutomProcessorTest {
 	
 	private TemplateProcessorContext mockTemplateProcessorContext;
@@ -29,7 +29,7 @@ public class VgpHydroCutomProcessorTest {
 	@Test
 	public void shouldProcessFile() throws Exception {
 		//Given
-		VgpHydroCustomProcessor testInstance = new VgpHydroCustomProcessor();
+		VgpHydroLocationMetaProcessor testInstance = new VgpHydroLocationMetaProcessor();
 		givenTestDataFile(testInstance);
 		VgpHydroFileParser mockFileParser = Mockito.mock(VgpHydroFileParser.class);
 		mockTemplateProcessorContext = Mockito.mock(TemplateProcessorContext.class);
@@ -45,7 +45,7 @@ public class VgpHydroCutomProcessorTest {
 	@Test(expected=TemplateProcessorException.class)
 	public void shouldRaiseExceptionWhenProcessFileWithParseFailed() throws Exception {
 		//Given
-		VgpHydroCustomProcessor testInstance = new VgpHydroCustomProcessor();
+		VgpHydroLocationMetaProcessor testInstance = new VgpHydroLocationMetaProcessor();
 		givenTestDataFile(testInstance);
 		VgpHydroFileParser mockFileParser = PowerMockito.mock(VgpHydroFileParser.class);
 		PowerMockito.doThrow(new RuntimeException()).when(mockFileParser).parse();
@@ -61,7 +61,7 @@ public class VgpHydroCutomProcessorTest {
 	@Test(expected=TemplateProcessorException.class)
 	public void shouldRaiseTemplateProcessorExceptionWhenFileIsNull() throws TemplateProcessorException {
 		//Given
-		VgpHydroCustomProcessor testInstance = new VgpHydroCustomProcessor();
+		VgpHydroLocationMetaProcessor testInstance = new VgpHydroLocationMetaProcessor();
 		//When
 		testInstance.processFile();
 		fail("Program reached unexpected point!");
@@ -70,14 +70,14 @@ public class VgpHydroCutomProcessorTest {
 	@Test(expected=TemplateProcessorException.class)
 	public void shouldRaiseTemplateProcessorExceptionWhenContextIsNull() throws TemplateProcessorException {
 		//Given
-		VgpHydroCustomProcessor testInstance = new VgpHydroCustomProcessor();
+		VgpHydroLocationMetaProcessor testInstance = new VgpHydroLocationMetaProcessor();
 		givenTestDataFile(testInstance);
 		//When
 		testInstance.processFile();
 		fail("Program reached unexpected point!");
 	}
 
-	private void givenTestDataFile(VgpHydroCustomProcessor testInstance) {
+	private void givenTestDataFile(VgpHydroLocationMetaProcessor testInstance) {
 		List<File> files = new ArrayList<>();
 		testDataFile = new File("src/test/resources/hydro_data_03072018.txt");
 		files.add(testDataFile);

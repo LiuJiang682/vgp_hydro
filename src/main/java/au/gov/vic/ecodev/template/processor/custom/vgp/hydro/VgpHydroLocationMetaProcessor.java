@@ -11,16 +11,16 @@ import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext
 import au.gov.vic.ecodev.mrt.template.processor.exception.TemplateProcessorException;
 import au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.VgpHydroFileParser;
 
-public class VgpHydroCustomProcessor implements TemplateProcessor {
+public class VgpHydroLocationMetaProcessor implements TemplateProcessor {
 	
-	private static final Logger LOGGER = Logger.getLogger(VgpHydroCustomProcessor.class);
+	private static final Logger LOGGER = Logger.getLogger(VgpHydroLocationMetaProcessor.class);
 	
 	private TemplateProcessorContext templateProcessorContext;
 	private List<File> files;
 
 	@Override
 	public void processFile() throws TemplateProcessorException {
-		LOGGER.info("VgpHydroCustomProcessor.processFile");
+		LOGGER.info("VgpHydroLocationMetaProcessor.processFile");
 		if (CollectionUtils.isEmpty(files)) {
 			throw new TemplateProcessorException("No file to process!");
 		}
@@ -41,13 +41,13 @@ public class VgpHydroCustomProcessor implements TemplateProcessor {
 
 	@Override
 	public void setFileList(List<File> files) {
-		LOGGER.info("VgpHydroCustomProcessor.setFileList");
+		LOGGER.info("VgpHydroLocationMetaProcessor.setFileList");
 		this.files = files;
 	}
 
 	@Override
 	public void setTemplateProcessorContent(TemplateProcessorContext context) {
-		LOGGER.info("VgpHydroCustomProcessor.setTemplateProcessorContent");
+		LOGGER.info("VgpHydroLocationMetaProcessor.setTemplateProcessorContent");
 		this.templateProcessorContext = context;
 	}
 
