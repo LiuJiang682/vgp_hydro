@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro;
+package au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.location.meta;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
@@ -21,12 +21,12 @@ import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.template.processor.context.properties.StringTemplateProperties;
 import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroTemplate;
 
-public class VgpHydroFileParserTest {
+public class VgpHydroLocationMetaFileParserTest {
 
 	private TemplateProcessorContext mockTemplateProcessorContext;
 	private File testDataFile;
 	
-	private VgpHydroFileParser testInstance;
+	private VgpHydroLocationMetaFileParser testInstance;
 	
 	@Test
 	public void shouldBuildTemplateFile() throws Exception {
@@ -61,7 +61,7 @@ public class VgpHydroFileParserTest {
 		File testDataFile = null;
 		TemplateProcessorContext templateProcessorContext = null;
 		//When
-		new VgpHydroFileParser(testDataFile, templateProcessorContext);
+		new VgpHydroLocationMetaFileParser(testDataFile, templateProcessorContext);
 		fail("Program reached unexpected point!");
 	}
 	
@@ -71,13 +71,13 @@ public class VgpHydroFileParserTest {
 		File file = new File("src/test/resources/testData/hydro_data_03072018.txt");
 		TemplateProcessorContext templateProcessorContext = null;
 		//When
-		new VgpHydroFileParser(file, templateProcessorContext);
+		new VgpHydroLocationMetaFileParser(file, templateProcessorContext);
 		fail("Program reached unexpected point!");
 	}
 
 	private void givenTestInstance() {
 		testDataFile = new File("src/test/resources/testData/hydro_data_03072018.txt");
 		mockTemplateProcessorContext = Mockito.mock(TemplateProcessorContext.class);
-		testInstance = new VgpHydroFileParser(testDataFile, mockTemplateProcessorContext);
+		testInstance = new VgpHydroLocationMetaFileParser(testDataFile, mockTemplateProcessorContext);
 	}
 }

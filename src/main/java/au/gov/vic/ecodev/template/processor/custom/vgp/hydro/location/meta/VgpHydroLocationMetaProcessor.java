@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.custom.vgp.hydro;
+package au.gov.vic.ecodev.template.processor.custom.vgp.hydro.location.meta;
 
 import java.io.File;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.util.CollectionUtils;
 import au.gov.vic.ecodev.mrt.template.processor.TemplateProcessor;
 import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext;
 import au.gov.vic.ecodev.mrt.template.processor.exception.TemplateProcessorException;
-import au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.VgpHydroFileParser;
+import au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.location.meta.VgpHydroLocationMetaFileParser;
 
 public class VgpHydroLocationMetaProcessor implements TemplateProcessor {
 	
@@ -31,8 +31,9 @@ public class VgpHydroLocationMetaProcessor implements TemplateProcessor {
 		
 		try {
 			for (File file : files) {
-				VgpHydroFileParser vgpHuydroFileParser = new VgpHydroFileParser(file, templateProcessorContext);
-				vgpHuydroFileParser.parse();
+				VgpHydroLocationMetaFileParser vgpHydroLocationMetaFileParser = new VgpHydroLocationMetaFileParser(file,
+						templateProcessorContext);
+				vgpHydroLocationMetaFileParser.parse();
 			}
 		} catch (Exception e) {
 			throw new TemplateProcessorException(e.getMessage(), e);
