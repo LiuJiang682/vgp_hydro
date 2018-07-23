@@ -1,6 +1,7 @@
 package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
@@ -18,13 +19,25 @@ public class VgpHydroLocationMetaValidatorFactoryTest {
 	private VgpHydroLocationMetaValidatorFactory testInstance;
 
 	@Test
-	public void shouldReturnAValidator() throws Exception {
+	public void shouldReturnHeaderValidator() throws Exception {
+		//Given
+		givenTestInstance();
+		//When
+		Validator validator = testInstance.getLineValidator("Site_ID\\tUWI\\tLocal_Name\\tLocation_Desc\\tState\\tGrid/Zone\\tEasting\\tNorthing\\tDatum\\tLatitude\\tLongitude\\tKB\\tElevation\\tBore Diameter\\tTD\\tTVD\\tDepth Datum");
+		//Then
+		assertThat(validator, is(notNullValue()));
+		assertThat(validator, is(instanceOf(VgpHydroLocationMetaHeaderValidator.class)));
+	}
+	
+	@Test
+	public void shouldReturnDefaultValidator() throws Exception {
 		//Given
 		givenTestInstance();
 		//When
 		Validator validator = testInstance.getLineValidator("");
 		//Then
 		assertThat(validator, is(notNullValue()));
+		assertThat(validator, is(instanceOf(VgpHydroLocationMetaDefaultValidator.class)));
 	}
 	
 	@Test

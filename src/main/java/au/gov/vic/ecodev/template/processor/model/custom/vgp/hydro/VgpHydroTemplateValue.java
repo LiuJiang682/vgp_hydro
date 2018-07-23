@@ -17,15 +17,21 @@ public class VgpHydroTemplateValue implements TemplateValue, Serializable {
 	private static final long serialVersionUID = -5446260102996877008L;
 
 	private final List<String> datas;
+	private final int issueColumnIndex;
 	
-	public VgpHydroTemplateValue(final List<String> datas) {
+	public VgpHydroTemplateValue(final List<String> datas, final int issueColumnIndex) {
 		this.datas = datas;
+		this.issueColumnIndex = issueColumnIndex;
 	}
 
 	public List<String> getDatas() {
 		return datas;
 	}
 	
+	public int getIssueColumnIndex() {
+		return issueColumnIndex;
+	}
+
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

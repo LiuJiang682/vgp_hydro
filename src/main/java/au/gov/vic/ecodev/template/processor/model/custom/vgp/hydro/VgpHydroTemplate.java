@@ -7,19 +7,22 @@ import java.util.Map;
 
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.model.TemplateValue;
+import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 
 public class VgpHydroTemplate implements Template {
 
-	private Map<String, List<String>> datas = new HashMap<>();
+	private Map<String, VgpHydroTemplateValue> datas = new HashMap<>();
 	
 	@Override
 	public void put(String key, List<String> values) {
-		datas.put(key, values);
+		VgpHydroTemplateValue vgpHydroTemplateValue = new VgpHydroTemplateValue(values, Numerals.NOT_FOUND);
+		datas.put(key, vgpHydroTemplateValue);
 	}
 
 	@Override
 	public List<String> get(String key) {
-		return datas.get(key);
+		VgpHydroTemplateValue vgpHydroTemplateValue = datas.get(key);
+		return (null == vgpHydroTemplateValue) ? null : vgpHydroTemplateValue.getDatas();
 	}
 
 	@Override
@@ -29,12 +32,12 @@ public class VgpHydroTemplate implements Template {
 
 	@Override
 	public void put(String key, TemplateValue value) {
-		datas.put(key, ((VgpHydroTemplateValue)value).getDatas());
+		datas.put(key, ((VgpHydroTemplateValue)value));
 	}
 
 	@Override
 	public TemplateValue getTemplateValue(String key) {
-		return new VgpHydroTemplateValue(get(key));
+		return (TemplateValue) get(key);
 	}
 
 }
