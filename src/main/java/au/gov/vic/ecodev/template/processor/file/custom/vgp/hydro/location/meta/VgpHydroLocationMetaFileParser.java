@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro;
+package au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.location.meta;
 
 import java.io.File;
 import java.io.FileReader;
@@ -16,14 +16,14 @@ import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
 import au.gov.vic.ecodev.mrt.template.properties.TemplateProperties;
 import au.gov.vic.ecodev.template.processor.context.properties.StringToListTemplatePropertiesParser;
-import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.VgpHydroValidatorFactory;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta.VgpHydroLocationMetaValidatorFactory;
 import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroTemplate;
 import au.gov.vic.ecodev.utils.file.finder.DirectoryTreeReverseTraversalZipFileFinder;
 import au.gov.vic.ecodev.utils.file.helper.MessageHandler;
 
-public class VgpHydroFileParser {
+public class VgpHydroLocationMetaFileParser {
 
-	private static final Logger LOGGER = Logger.getLogger(VgpHydroFileParser.class);
+	private static final Logger LOGGER = Logger.getLogger(VgpHydroLocationMetaFileParser.class);
 	
 	private static final String TEMPLATE_PROP_VGP_HYDRO_MANDATORY_VALIDATE = "VGPHYDRO:MANDATORY.VALIDATE.FIELDS";
 	
@@ -32,7 +32,7 @@ public class VgpHydroFileParser {
 	private final File file;
 	private final TemplateProcessorContext templateProcessorContext;
 	
-	public VgpHydroFileParser(File file, TemplateProcessorContext templateProcessorContext) {
+	public VgpHydroLocationMetaFileParser(File file, TemplateProcessorContext templateProcessorContext) {
 		if (null == file) {
 			throw new IllegalArgumentException("VgpHydroFileParser:file parameter cannot be null!");
 		}
@@ -47,9 +47,8 @@ public class VgpHydroFileParser {
 		Map<String, List<String>> templateParamMap = new HashMap<>();
 		Template dataBean = new VgpHydroTemplate();
 		String zipFile = new DirectoryTreeReverseTraversalZipFileFinder(file.getParent()).findZipFile();
-		final List<String> mandatoryFields = getMandatoryValidateFields();
-		VgpHydroValidatorFactory vgpHydroValidatorFactory = new VgpHydroValidatorFactory(templateProcessorContext, 
-				mandatoryFields);
+//		final List<String> mandatoryFields = getMandatoryValidateFields();
+		VgpHydroLocationMetaValidatorFactory vgpHydroValidatorFactory = new VgpHydroLocationMetaValidatorFactory(templateProcessorContext);
 		
 		LineNumberReader lineNumberReader = getLineNumberReader();
 		
@@ -75,13 +74,13 @@ public class VgpHydroFileParser {
 		}
 	}
 
-	protected final List<String> getMandatoryValidateFields() throws TemplateProcessorException {
-		TemplateProperties mandatoryFieldTemplateProperties = templateProcessorContext
-				.getTemplateContextProperty(TEMPLATE_PROP_VGP_HYDRO_MANDATORY_VALIDATE);
-		List<String> mandatoryFields = new StringToListTemplatePropertiesParser(mandatoryFieldTemplateProperties, 
-				COMMA).parse();
-		return mandatoryFields;
-	}
+//	protected final List<String> getMandatoryValidateFields() throws TemplateProcessorException {
+//		TemplateProperties mandatoryFieldTemplateProperties = templateProcessorContext
+//				.getTemplateContextProperty(TEMPLATE_PROP_VGP_HYDRO_MANDATORY_VALIDATE);
+//		List<String> mandatoryFields = new StringToListTemplatePropertiesParser(mandatoryFieldTemplateProperties, 
+//				COMMA).parse();
+//		return mandatoryFields;
+//	}
 
 	private LineNumberReader getLineNumberReader() throws Exception {
 		return new LineNumberReader(new FileReader(file.getAbsolutePath()));

@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.custom.vgp.hydro;
+package au.gov.vic.ecodev.template.processor.custom.vgp.hydro.location.meta;
 
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.eq;
@@ -17,11 +17,11 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext;
 import au.gov.vic.ecodev.mrt.template.processor.exception.TemplateProcessorException;
-import au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.VgpHydroFileParser;
+import au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.location.meta.VgpHydroLocationMetaFileParser;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(VgpHydroLocationMetaProcessor.class)
-public class VgpHydroCutomProcessorTest {
+public class VgpHydroLocationMetaProcessorTest {
 	
 	private TemplateProcessorContext mockTemplateProcessorContext;
 	private File testDataFile;
@@ -31,10 +31,10 @@ public class VgpHydroCutomProcessorTest {
 		//Given
 		VgpHydroLocationMetaProcessor testInstance = new VgpHydroLocationMetaProcessor();
 		givenTestDataFile(testInstance);
-		VgpHydroFileParser mockFileParser = Mockito.mock(VgpHydroFileParser.class);
+		VgpHydroLocationMetaFileParser mockFileParser = Mockito.mock(VgpHydroLocationMetaFileParser.class);
 		mockTemplateProcessorContext = Mockito.mock(TemplateProcessorContext.class);
 		testInstance.setTemplateProcessorContent(mockTemplateProcessorContext);
-		PowerMockito.whenNew(VgpHydroFileParser.class).withArguments(eq(testDataFile), eq(mockTemplateProcessorContext))
+		PowerMockito.whenNew(VgpHydroLocationMetaFileParser.class).withArguments(eq(testDataFile), eq(mockTemplateProcessorContext))
 			.thenReturn(mockFileParser);
 		//When
 		testInstance.processFile();
@@ -47,11 +47,11 @@ public class VgpHydroCutomProcessorTest {
 		//Given
 		VgpHydroLocationMetaProcessor testInstance = new VgpHydroLocationMetaProcessor();
 		givenTestDataFile(testInstance);
-		VgpHydroFileParser mockFileParser = PowerMockito.mock(VgpHydroFileParser.class);
+		VgpHydroLocationMetaFileParser mockFileParser = PowerMockito.mock(VgpHydroLocationMetaFileParser.class);
 		PowerMockito.doThrow(new RuntimeException()).when(mockFileParser).parse();
 		mockTemplateProcessorContext = Mockito.mock(TemplateProcessorContext.class);
 		testInstance.setTemplateProcessorContent(mockTemplateProcessorContext);
-		PowerMockito.whenNew(VgpHydroFileParser.class).withArguments(eq(testDataFile), eq(mockTemplateProcessorContext))
+		PowerMockito.whenNew(VgpHydroLocationMetaFileParser.class).withArguments(eq(testDataFile), eq(mockTemplateProcessorContext))
 			.thenReturn(mockFileParser);
 		//When
 		testInstance.processFile();
