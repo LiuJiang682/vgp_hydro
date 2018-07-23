@@ -2,7 +2,6 @@ package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.loc
 
 import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext;
 import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
-import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.VgpHydroDefaultValidator;
 
 public class VgpHydroLocationMetaValidatorFactory {
 
@@ -16,6 +15,6 @@ public class VgpHydroLocationMetaValidatorFactory {
 	}
 
 	public Validator getLineValidator(final String line) throws Exception {
-		return new VgpHydroDefaultValidator();
+		return new VgpHydroLocationMetaDefaultValidator();
 	}
 }
