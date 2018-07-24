@@ -13,19 +13,22 @@ import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroTempl
 public class ValidatorHelper {
 
 	private final List<String> messages;
+	private final String currentLine;
 	private final boolean hasErrorMessage;
 	private final int issueColumnIndex;
 	
-	public ValidatorHelper(final List<String> messages, 
+	public ValidatorHelper(final List<String> messages, final String currentLine, 
 			final boolean hasErrorMessage) {
-		this(messages, hasErrorMessage, Numerals.NOT_FOUND);
+		this(messages, currentLine, hasErrorMessage, Numerals.NOT_FOUND);
 	}
 
-	public ValidatorHelper(List<String> messages, boolean hasErrorMessage, int issueColumnIndex) {
+	public ValidatorHelper(final List<String> messages, final String currentLine,
+			final boolean hasErrorMessage, final int issueColumnIndex) {
 		if (null == messages) {
 			throw new IllegalArgumentException("Parameter messages cannot be null!");
 		}
 		this.messages = messages;
+		this.currentLine = currentLine;
 		this.hasErrorMessage = hasErrorMessage;
 		this.issueColumnIndex = issueColumnIndex;
 	}
@@ -35,12 +38,11 @@ public class ValidatorHelper {
 			return Optional.of(messages);
 		} else {
 			if ((null != dataBean) 
-					&& (ArrayUtils.isNotEmpty(datas)) 
-					&& (Numerals.TWO <= datas.length)) {
-				String[] newDatas = Arrays.copyOfRange(datas, Numerals.ONE, datas.length);
+					&& (ArrayUtils.isNotEmpty(datas))) {
+				String[] newDatas = Arrays.copyOfRange(datas, Numerals.ZERO, datas.length);
 				List<String> values = Arrays.asList(newDatas);
 				VgpHydroTemplateValue value = new VgpHydroTemplateValue(values, issueColumnIndex);
-				dataBean.put(datas[Numerals.ZERO], value);
+				dataBean.put(currentLine, value);
 			}
 			return messages.isEmpty() ? Optional.empty() : Optional.of(messages);
 		} 

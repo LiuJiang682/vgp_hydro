@@ -31,7 +31,7 @@ public class ValidatorHelperTest {
 		List<String> messages = new ArrayList<>();
 		Template mockTemplate = null;
 		String[] datas = {"abc", "def"};
-		ValidatorHelper testInstance = new ValidatorHelper(messages, false);
+		ValidatorHelper testInstance = new ValidatorHelper(messages, "0", false);
 		//When
 		Optional<List<String>> messagesOptional = testInstance.updateDataBeanOrCreateErrorOptional(datas, mockTemplate);
 		//Then
@@ -45,7 +45,7 @@ public class ValidatorHelperTest {
 		messages.add(Strings.LOG_INFO_HEADER + "xxx");
 		Template mockTemplate = null;
 		String[] datas = {"abc", "def"};
-		ValidatorHelper testInstance = new ValidatorHelper(messages, true);
+		ValidatorHelper testInstance = new ValidatorHelper(messages, "0", true);
 		//When
 		Optional<List<String>> messagesOptional = testInstance.updateDataBeanOrCreateErrorOptional(datas, mockTemplate);
 		//Then
@@ -62,7 +62,7 @@ public class ValidatorHelperTest {
 		messages.add("abc");
 		Template mockTemplate = Mockito.mock(Template.class);
 		String[] datas = {"abc", "def"};
-		ValidatorHelper testInstance = new ValidatorHelper(messages, true);
+		ValidatorHelper testInstance = new ValidatorHelper(messages, "0", true);
 		//When
 		Optional<List<String>> messagesOptional = testInstance.updateDataBeanOrCreateErrorOptional(datas, mockTemplate);
 		//Then
@@ -79,7 +79,7 @@ public class ValidatorHelperTest {
 		List<String> messages = new ArrayList<>();
 		Template mockTemplate = Mockito.mock(Template.class);
 		String[] datas = {"abc"};
-		ValidatorHelper testInstance = new ValidatorHelper(messages, false);
+		ValidatorHelper testInstance = new ValidatorHelper(messages, "0", false);
 		//When
 		Optional<List<String>> messagesOptional = testInstance.updateDataBeanOrCreateErrorOptional(datas, mockTemplate);
 		//Then
@@ -93,7 +93,7 @@ public class ValidatorHelperTest {
 		List<String> messages = new ArrayList<>();
 		Template mockTemplate = Mockito.mock(Template.class);
 		String[] datas = {};
-		ValidatorHelper testInstance = new ValidatorHelper(messages, false);
+		ValidatorHelper testInstance = new ValidatorHelper(messages, "0", false);
 		//When
 		Optional<List<String>> messagesOptional = testInstance.updateDataBeanOrCreateErrorOptional(datas, mockTemplate);
 		//Then
@@ -107,7 +107,7 @@ public class ValidatorHelperTest {
 		List<String> messages = new ArrayList<>();
 		Template mockTemplate = Mockito.mock(Template.class);
 		String[] datas = null;
-		ValidatorHelper testInstance = new ValidatorHelper(messages, false);
+		ValidatorHelper testInstance = new ValidatorHelper(messages, "0", false);
 		//When
 		Optional<List<String>> messagesOptional = testInstance.updateDataBeanOrCreateErrorOptional(datas, mockTemplate);
 		//Then
@@ -121,12 +121,12 @@ public class ValidatorHelperTest {
 		List<String> messages = new ArrayList<>();
 		Template mockTemplate = Mockito.mock(Template.class);
 		String[] datas = {"abc", "def"};
-		ValidatorHelper testInstance = new ValidatorHelper(messages, false);
+		ValidatorHelper testInstance = new ValidatorHelper(messages, "0", false);
 		//When
 		Optional<List<String>> messagesOptional = testInstance.updateDataBeanOrCreateErrorOptional(datas, mockTemplate);
 		//Then
 		assertThat(messagesOptional.isPresent(), is(false));
-		verify(mockTemplate).put(eq("abc"), Matchers.any(VgpHydroTemplateValue.class));
+		verify(mockTemplate).put(eq("0"), Matchers.any(VgpHydroTemplateValue.class));
 	}
 	
 	@Test
@@ -134,7 +134,7 @@ public class ValidatorHelperTest {
 		//Given
 		List<String> messages = new ArrayList<>();
 		//When
-		ValidatorHelper testInstance = new ValidatorHelper(messages, false);
+		ValidatorHelper testInstance = new ValidatorHelper(messages, "0", false);
 		//Then
 		assertThat(testInstance, is(notNullValue()));
 	}
@@ -144,7 +144,7 @@ public class ValidatorHelperTest {
 		//Given
 		List<String> messages = null;
 		//When
-		new ValidatorHelper(messages, false);
+		new ValidatorHelper(messages, "0", false);
 		fail("Program reached unexpected point!");
 	}
 }

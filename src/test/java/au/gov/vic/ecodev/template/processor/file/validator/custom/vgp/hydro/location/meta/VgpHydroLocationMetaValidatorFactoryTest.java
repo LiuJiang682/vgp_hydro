@@ -23,10 +23,21 @@ public class VgpHydroLocationMetaValidatorFactoryTest {
 		//Given
 		givenTestInstance();
 		//When
-		Validator validator = testInstance.getLineValidator("Site_ID\\tUWI\\tLocal_Name\\tLocation_Desc\\tState\\tGrid/Zone\\tEasting\\tNorthing\\tDatum\\tLatitude\\tLongitude\\tKB\\tElevation\\tBore Diameter\\tTD\\tTVD\\tDepth Datum");
+		Validator validator = testInstance.getLineValidator("Site_ID\tUWI\tLocal_Name\tLocation_Desc\tState\tGrid/Zone\tEasting\tNorthing\tDatum\tLatitude\tLongitude\tKB\tElevation\tBore Diameter\tTD\tTVD\tDepth Datum");
 		//Then
 		assertThat(validator, is(notNullValue()));
 		assertThat(validator, is(instanceOf(VgpHydroLocationMetaHeaderValidator.class)));
+	}
+	
+	@Test
+	public void shouldReturnDataValidator() throws Exception {
+		//Given
+		givenTestInstance();
+		//When
+		Validator validator = testInstance.getLineValidator("102621\t\t\t\t\tMGA 54\t636758.5\t5747711.5\t\t\t\t\t11.88\t100\t\t\t");
+		//Then
+		assertThat(validator, is(notNullValue()));
+		assertThat(validator, is(instanceOf(VgpHydroLocationMetaDataValidator.class)));
 	}
 	
 	@Test

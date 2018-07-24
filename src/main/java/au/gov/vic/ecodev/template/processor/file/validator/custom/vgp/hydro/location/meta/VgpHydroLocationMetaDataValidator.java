@@ -13,14 +13,15 @@ import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.helper.ValidatorHelper;
 
-public class VgpHydroLocationMetaDefaultValidator implements Validator {
-
+public class VgpHydroLocationMetaDataValidator implements Validator {
+	
 	private static final String STRING_ZERO = "0";
+
 	private String[] strs;
 	
 	@Override
 	public void init(String[] strs) {
-		this.strs = strs;
+		this.strs = strs;	
 	}
 
 	@Override
