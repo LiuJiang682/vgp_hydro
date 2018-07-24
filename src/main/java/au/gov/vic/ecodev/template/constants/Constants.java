@@ -13,6 +13,7 @@ public interface Constants {
 		static final String CURRENT_LINE = "currentLine";
 		static final String TAB = "\t";
 		static final String STRING_ZERO = "0";
+		static final String COLUMN_HEADERS = "Column_headers";
 	}
 	
 	interface Numerals {

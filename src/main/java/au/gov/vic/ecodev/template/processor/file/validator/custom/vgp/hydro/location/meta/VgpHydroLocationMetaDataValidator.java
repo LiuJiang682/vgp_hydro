@@ -12,6 +12,8 @@ import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.helper.ValidatorHelper;
+import au.gov.vic.ecodev.utils.constants.Constants.Numeral;
+import au.gov.vic.ecodev.utils.validator.common.ListSizeValidator;
 
 public class VgpHydroLocationMetaDataValidator implements Validator {
 	
@@ -31,6 +33,21 @@ public class VgpHydroLocationMetaDataValidator implements Validator {
 		String currentLine = STRING_ZERO;
 		if (CollectionUtils.isNotEmpty(currentLineList)) {
 			currentLine = currentLineList.get(Numerals.ZERO);
+		}
+		
+		if (null == strs) {
+			String message = "Location meta data record requires minimum 3 columns, only got 0";
+			messages.add(message);
+		} else if (strs.length < Numerals.THREE) {
+			String message = "Location meta data record requires minimum 3 columns, only got " + strs.length;
+			messages.add(message);
+		} else {
+			List<String> columnHeaders = templateParamMap.get(Strings.COLUMN_HEADERS);
+			int columnCount = new ListSizeValidator(columnHeaders).validate(messages);
+			if (Numeral.INVALID_COLUMN_COUNT != columnCount) {
+				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
+						VgpHydroLocationMetaHeaderValidator.SITE_ID, "vgphydroLocMeta").validate(messages);
+			}
 		}
 		
 		return new ValidatorHelper(messages, currentLine, false)

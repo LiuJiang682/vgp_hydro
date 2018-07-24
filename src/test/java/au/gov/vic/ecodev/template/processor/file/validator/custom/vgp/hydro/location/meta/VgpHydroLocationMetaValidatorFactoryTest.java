@@ -37,7 +37,7 @@ public class VgpHydroLocationMetaValidatorFactoryTest {
 		//Given
 		givenTestInstance();
 		//When
-		Validator validator = testInstance.getLineValidator("102621\t\t\t\t\tMGA 54\t636758.5\t5747711.5\t\t\t\t\t11.88\t100\t\t\t");
+		Validator validator = testInstance.getLineValidator(TestFixture.VGP_HYDRO_LOC_META_DATA_TEST);
 		//Then
 		assertThat(validator, is(notNullValue()));
 		assertThat(validator, is(instanceOf(VgpHydroLocationMetaDataValidator.class)));

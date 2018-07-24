@@ -18,103 +18,81 @@ import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.custom.vgp.hydro.TestFixture;
 import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroTemplate;
 
-public class VgpHydroLocationMetaHeaderValidatorTest {
+public class VgpHydroLocationMetaDataValidatorTest {
 
-	private VgpHydroLocationMetaHeaderValidator testInstance;
+	private VgpHydroLocationMetaDataValidator testInstance;
 	private Map<String, List<String>> templateParamMap;
 	private Template dataBean;
 	
 	@Test
-	public void shouldReturnEmptyMessageWhenCorrectHeadersProvided() {
+	public void shouldReturnEmptyMessageWhenCorrectDataProvided() {
 		//Given
 		givenTestInstance();
-		testInstance.init(TestFixture.getLocMetaHeaders());
+		testInstance.init(TestFixture.getLocMetaData());
+		templateParamMap.put(Strings.COLUMN_HEADERS, Arrays.asList(TestFixture.getLocMetaHeaders()));
 		//When
 		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
 		//Then
 		assertThat(messages.isPresent(), is(false));
-		List<String> retrievedHeaders = templateParamMap.get(Strings.COLUMN_HEADERS);
-		assertThat(retrievedHeaders, is(notNullValue()));
-		assertThat(retrievedHeaders, is(equalTo(Arrays.asList(TestFixture.getLocMetaHeaders()))));
 	}
 	
 	@Test
-	public void shouldReturnMissingSiteIdMessageWhenHeadersNotIncludedSiteId() {
+	public void shouldReturnMissingSiteIdMessageWhenStrsIsMissingSiteId() {
 		//Given
 		givenTestInstance();
-		String[] strs = {"Site_IDss", "easting", "northing"};
+		String[] strs = {"", "abc", "123"};
 		testInstance.init(strs);
-		
+		templateParamMap.put(Strings.COLUMN_HEADERS, Arrays.asList(TestFixture.getLocMetaHeaders()));
 		//When
 		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
 		//Then
 		assertThat(messages.isPresent(), is(true));
 		List<String> messageList = messages.get();
 		assertThat(messageList.size(), is(equalTo(1)));
-		assertThat(messageList.get(0), is(equalTo("Header requires the Site_ID column")));
+		assertThat(messageList.get(0), is(equalTo("ERROR: Line 0: Template vgphydroLocMeta column Site_ID cannot be null or empty")));
 	}
 	
 	@Test
-	public void shouldReturnMissingEastingMessageWhenHeadersNotIncludedEasting() {
+	public void shouldReturnMissingColumnHeaderMessageWhenColumnHeadersIsNotProvided() {
 		//Given
 		givenTestInstance();
-		String[] strs = {"Site_ID", "eastingss", "northing"};
-		testInstance.init(strs);
-		
+		testInstance.init(TestFixture.getLocMetaData());
 		//When
 		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
 		//Then
 		assertThat(messages.isPresent(), is(true));
 		List<String> messageList = messages.get();
 		assertThat(messageList.size(), is(equalTo(1)));
-		assertThat(messageList.get(0), is(equalTo("Header requires the Easting column")));
+		assertThat(messageList.get(0), is(equalTo("No column header has been passing down")));
 	}
 	
 	@Test
-	public void shouldReturnMissingNorthingMessageWhenHeadersNotIncludedNorthing() {
-		//Given
-		givenTestInstance();
-		String[] strs = {"Site_ID", "easting", "northingss"};
-		testInstance.init(strs);
-		
-		//When
-		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
-		//Then
-		assertThat(messages.isPresent(), is(true));
-		List<String> messageList = messages.get();
-		assertThat(messageList.size(), is(equalTo(1)));
-		assertThat(messageList.get(0), is(equalTo("Header requires the Northing column")));
-	}
-	
-	@Test
-	public void shouldReturnIncorrectSizeMessageWhenHeadersLT3() {
+	public void shouldReturnIncorrectSizeMessageWhenStrsIsLT3() {
 		//Given
 		givenTestInstance();
 		String[] strs = {"abc", "123"};
 		testInstance.init(strs);
-		
 		//When
 		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
 		//Then
 		assertThat(messages.isPresent(), is(true));
 		List<String> messageList = messages.get();
 		assertThat(messageList.size(), is(equalTo(1)));
-		assertThat(messageList.get(0), is(equalTo("Header requires minimum 3 columns, only got 2")));
+		assertThat(messageList.get(0), is(equalTo("Location meta data record requires minimum 3 columns, only got 2")));
 	}
 	
 	@Test
-	public void shouldReturnIncorrectSizeMessageWhenHeadersIsNull() {
+	public void shouldReturnIncorrectSizeMessageWhenStrsIsNull() {
 		//Given
 		givenTestInstance();
 		testInstance.init(null);
-		
 		//When
 		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
 		//Then
 		assertThat(messages.isPresent(), is(true));
 		List<String> messageList = messages.get();
 		assertThat(messageList.size(), is(equalTo(1)));
-		assertThat(messageList.get(0), is(equalTo("Header requires minimum 3 columns, only got 0")));
+		assertThat(messageList.get(0), is(equalTo("Location meta data record requires minimum 3 columns, only got 0")));
 	}
 	
 	@Test
@@ -127,7 +105,7 @@ public class VgpHydroLocationMetaHeaderValidatorTest {
 	}
 
 	private void givenTestInstance() {
-		this.testInstance = new VgpHydroLocationMetaHeaderValidator();
+		testInstance = new VgpHydroLocationMetaDataValidator();
 		templateParamMap = new HashMap<>();
 		dataBean = new VgpHydroTemplate();
 	}

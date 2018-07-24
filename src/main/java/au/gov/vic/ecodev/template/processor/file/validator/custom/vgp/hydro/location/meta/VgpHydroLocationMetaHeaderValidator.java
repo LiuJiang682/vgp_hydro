@@ -20,7 +20,7 @@ public class VgpHydroLocationMetaHeaderValidator implements Validator {
 	//TODO -- Refactor to an enum class??
 	private static final String NORTHING = "Northing";
 	private static final String EASTING = "Easting";
-	private static final String SITE_ID = "Site_ID";
+	public static final String SITE_ID = "Site_ID";
 	
 	private String[] strs;
 	
@@ -37,6 +37,7 @@ public class VgpHydroLocationMetaHeaderValidator implements Validator {
 		if (CollectionUtils.isNotEmpty(currentLineList)) {
 			currentLine = currentLineList.get(Numerals.ZERO);
 		}
+		List<String> headers = null;
 		
 		if (null == strs) {
 			String message = "Header requires minimum 3 columns, only got 0";
@@ -45,11 +46,14 @@ public class VgpHydroLocationMetaHeaderValidator implements Validator {
 			String message = "Header requires minimum 3 columns, only got " + strs.length;
 			messages.add(message);
 		} else {
-			doMandatoryHeaderCheck(messages, Arrays.asList(strs));
+			headers = Arrays.asList(strs);
+			doMandatoryHeaderCheck(messages, headers);
 		}
 		
 		boolean hasErrorMessage = new ErrorMessageChecker(messages).isContainsErrorMessages();
-		
+		if (!hasErrorMessage) {
+			templateParamMap.put(Strings.COLUMN_HEADERS, headers);
+		} 
 		return  new ValidatorHelper(messages, currentLine, hasErrorMessage)
 				.updateDataBeanOrCreateErrorOptional(strs, dataBean);
 	}
