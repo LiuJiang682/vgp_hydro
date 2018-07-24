@@ -44,7 +44,7 @@ public class VgpHydroLocationMetaFileParser {
 		Template dataBean = new VgpHydroTemplate();
 		String zipFile = new DirectoryTreeReverseTraversalZipFileFinder(file.getParent()).findZipFile();
 //		final List<String> mandatoryFields = getMandatoryValidateFields();
-		VgpHydroLocationMetaValidatorFactory vgpHydroValidatorFactory = new VgpHydroLocationMetaValidatorFactory(templateProcessorContext);
+		VgpHydroLocationMetaValidatorFactory vgpHydroValidatorFactory = new VgpHydroLocationMetaValidatorFactory();
 		
 		LineNumberReader lineNumberReader = getLineNumberReader();
 		

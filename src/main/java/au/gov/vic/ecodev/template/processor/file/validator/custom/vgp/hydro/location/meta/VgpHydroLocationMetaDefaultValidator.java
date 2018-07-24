@@ -15,7 +15,6 @@ import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.help
 
 public class VgpHydroLocationMetaDefaultValidator implements Validator {
 
-	private static final String STRING_ZERO = "0";
 	private String[] strs;
 	
 	@Override
@@ -27,7 +26,7 @@ public class VgpHydroLocationMetaDefaultValidator implements Validator {
 	public Optional<List<String>> validate(Map<String, List<String>> templateParamMap, Template dataBean) {
 		List<String> messages = new ArrayList<>();
 		List<String> currentLineList = templateParamMap.get(Strings.CURRENT_LINE);
-		String currentLine = STRING_ZERO;
+		String currentLine = Strings.STRING_ZERO;
 		if (CollectionUtils.isNotEmpty(currentLineList)) {
 			currentLine = currentLineList.get(Numerals.ZERO);
 		}

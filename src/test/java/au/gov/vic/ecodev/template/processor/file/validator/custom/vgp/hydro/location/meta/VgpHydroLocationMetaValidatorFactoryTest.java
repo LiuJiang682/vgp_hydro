@@ -1,20 +1,19 @@
 package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta;
 
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.powermock.reflect.Whitebox;
 
-import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext;
 import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
+import au.gov.vic.ecodev.template.constants.Constants.Numerals;
+import au.gov.vic.ecodev.template.processor.custom.vgp.hydro.TestFixture;
 
 public class VgpHydroLocationMetaValidatorFactoryTest {
-	
-	private TemplateProcessorContext mockTemplateProcessorContext;
 	
 	private VgpHydroLocationMetaValidatorFactory testInstance;
 
@@ -23,10 +22,14 @@ public class VgpHydroLocationMetaValidatorFactoryTest {
 		//Given
 		givenTestInstance();
 		//When
-		Validator validator = testInstance.getLineValidator("Site_ID\tUWI\tLocal_Name\tLocation_Desc\tState\tGrid/Zone\tEasting\tNorthing\tDatum\tLatitude\tLongitude\tKB\tElevation\tBore Diameter\tTD\tTVD\tDepth Datum");
+		Validator validator = testInstance.getLineValidator(TestFixture.VGP_HYDRO_LOC_META_HEADERS);
 		//Then
 		assertThat(validator, is(notNullValue()));
 		assertThat(validator, is(instanceOf(VgpHydroLocationMetaHeaderValidator.class)));
+		String[] strs = Whitebox.getInternalState(validator, "strs");
+		assertThat(strs, is(notNullValue()));
+		assertThat(strs.length, is(equalTo(17)));
+		assertThat(strs[Numerals.ZERO], is(equalTo("Site_ID")));
 	}
 	
 	@Test
@@ -38,6 +41,10 @@ public class VgpHydroLocationMetaValidatorFactoryTest {
 		//Then
 		assertThat(validator, is(notNullValue()));
 		assertThat(validator, is(instanceOf(VgpHydroLocationMetaDataValidator.class)));
+		String[] strs = Whitebox.getInternalState(validator, "strs");
+		assertThat(strs, is(notNullValue()));
+		assertThat(strs.length, is(equalTo(14)));
+		assertThat(strs[Numerals.ZERO], is(equalTo("102621")));
 	}
 	
 	@Test
@@ -59,18 +66,8 @@ public class VgpHydroLocationMetaValidatorFactoryTest {
 		//Then
 		assertThat(testInstance, is(notNullValue()));
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void shouldRaiseExceptionWhenTemplateProcessorContextIsNull() {
-		//Given
-		TemplateProcessorContext templateProcessorContext = null;
-		//When
-		new VgpHydroLocationMetaValidatorFactory(templateProcessorContext);
-		fail("Program reached unexpected point!");
-	}
 
 	private void givenTestInstance() {
-		mockTemplateProcessorContext = Mockito.mock(TemplateProcessorContext.class);
-		testInstance = new VgpHydroLocationMetaValidatorFactory(mockTemplateProcessorContext);
+		testInstance = new VgpHydroLocationMetaValidatorFactory();
 	}
 }
