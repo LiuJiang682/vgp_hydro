@@ -1,6 +1,7 @@
 package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -26,13 +27,19 @@ public class MandatoryStringDataValidator {
 	}
 
 	public void validate(List<String> messages) {
-		int index = columnHeaders.indexOf(code);
+		int index = columnHeaders.stream()
+				.map(String::toUpperCase)
+				.collect(Collectors.toList())
+				.indexOf(code.toUpperCase());
 		if (Numerals.NOT_FOUND == index) {
 			messages.add(constructMissingHeaderMessage(lineNumber));
 			return;
 		}
 	
-		String string = strs[index];
+		String string = null;
+		if (index < strs.length) {
+			string = strs[index];
+		}
 		if (StringUtils.isEmpty(string)) {
 			String message = new StringBuilder(Strings.LOG_ERROR_HEADER)
 					.append("Line ")

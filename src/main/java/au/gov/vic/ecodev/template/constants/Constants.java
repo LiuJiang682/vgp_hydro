@@ -14,6 +14,8 @@ public interface Constants {
 		static final String TAB = "\t";
 		static final String STRING_ZERO = "0";
 		static final String COLUMN_HEADERS = "Column_headers";
+		static final String EMPTY = "";
+		static final String COMMA = ",";
 	}
 	
 	interface Numerals {

@@ -10,7 +10,6 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
@@ -27,7 +26,6 @@ public class VgpHydroLocationMetaFileParserTest {
 	
 	private VgpHydroLocationMetaFileParser testInstance;
 	
-	@Ignore
 	@Test
 	public void shouldBuildTemplateFile() throws Exception {
 		//Given
@@ -72,7 +70,7 @@ public class VgpHydroLocationMetaFileParserTest {
 	}
 
 	private void givenTestInstance() {
-		testDataFile = new File("src/test/resources/testData/hydro_data_03072018.txt");
+		testDataFile = new File("src/test/resources/testData/Loc_20180725.txt");
 		mockTemplateProcessorContext = Mockito.mock(TemplateProcessorContext.class);
 		testInstance = new VgpHydroLocationMetaFileParser(testDataFile, mockTemplateProcessorContext);
 	}
