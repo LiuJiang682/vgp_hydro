@@ -17,7 +17,7 @@ import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta.VgpHydroLocationMetaValidatorFactory;
-import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroTemplate;
+import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroLocMetaTemplate;
 import au.gov.vic.ecodev.utils.file.finder.DirectoryTreeReverseTraversalZipFileFinder;
 import au.gov.vic.ecodev.utils.file.helper.MessageHandler;
 
@@ -41,7 +41,7 @@ public class VgpHydroLocationMetaFileParser {
 
 	public void parse() throws Exception {
 		Map<String, List<String>> templateParamMap = new HashMap<>();
-		Template dataBean = new VgpHydroTemplate();
+		Template dataBean = new VgpHydroLocMetaTemplate();
 		String zipFile = new DirectoryTreeReverseTraversalZipFileFinder(file.getParent()).findZipFile();
 //		final List<String> mandatoryFields = getMandatoryValidateFields();
 		VgpHydroLocationMetaValidatorFactory vgpHydroValidatorFactory = new VgpHydroLocationMetaValidatorFactory();

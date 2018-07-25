@@ -10,18 +10,18 @@ import java.util.List;
 import org.junit.Test;
 
 import au.gov.vic.ecodev.mrt.template.processor.persistent.Dao;
-import au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro.VgpHydroDaoImpl;
+import au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro.VgpHydroLocationMetaDaoImpl;
 
-public class VgpHydroTemplateUpdaterTest {
+public class VgpHydroLocationMetaTemplateUpdaterTest {
 
 	@Test
 	public void shouldReturnVgpHydroDaoClass() {
 		//Given
-		VgpHydroTemplateUpdater testInstance = new VgpHydroTemplateUpdater();
+		VgpHydroLocationMetaTemplateUpdater testInstance = new VgpHydroLocationMetaTemplateUpdater();
 		//When
 		List<Class<? extends Dao>> daos = testInstance.getDaoClasses();
 		assertThat(daos, is(notNullValue()));
 		assertThat(daos.size(), is(equalTo(1)));
-		assertThat(daos.get(0), is(equalTo(VgpHydroDaoImpl.class)));
+		assertThat(daos.get(0), is(equalTo(VgpHydroLocationMetaDaoImpl.class)));
 	}
 }

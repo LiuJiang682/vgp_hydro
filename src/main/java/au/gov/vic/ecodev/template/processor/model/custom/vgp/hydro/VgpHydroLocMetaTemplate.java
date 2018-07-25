@@ -9,7 +9,7 @@ import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.model.TemplateValue;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 
-public class VgpHydroTemplate implements Template {
+public class VgpHydroLocMetaTemplate implements Template {
 
 	private Map<String, VgpHydroTemplateValue> datas = new HashMap<>();
 	

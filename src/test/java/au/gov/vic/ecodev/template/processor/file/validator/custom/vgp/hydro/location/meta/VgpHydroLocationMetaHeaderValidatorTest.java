@@ -16,7 +16,7 @@ import org.junit.Test;
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.custom.vgp.hydro.TestFixture;
-import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroTemplate;
+import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroLocMetaTemplate;
 
 public class VgpHydroLocationMetaHeaderValidatorTest {
 
@@ -129,6 +129,6 @@ public class VgpHydroLocationMetaHeaderValidatorTest {
 	private void givenTestInstance() {
 		this.testInstance = new VgpHydroLocationMetaHeaderValidator();
 		templateParamMap = new HashMap<>();
-		dataBean = new VgpHydroTemplate();
+		dataBean = new VgpHydroLocMetaTemplate();
 	}
 }

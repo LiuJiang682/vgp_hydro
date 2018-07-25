@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 
 import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext;
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
-import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroTemplate;
+import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroLocMetaTemplate;
 
 public class VgpHydroLocationMetaFileParserTest {
 
@@ -37,7 +37,7 @@ public class VgpHydroLocationMetaFileParserTest {
 		ArgumentCaptor<Template> dataBeanCaptor = ArgumentCaptor.forClass(Template.class);
 		verify(mockTemplateProcessorContext).saveDataBean(dataBeanCaptor.capture());
 		Template capturedDataBean = dataBeanCaptor.getValue();
-		assertThat(capturedDataBean, is(instanceOf(VgpHydroTemplate.class)));
+		assertThat(capturedDataBean, is(instanceOf(VgpHydroLocMetaTemplate.class)));
 	}
 	
 	@Test
