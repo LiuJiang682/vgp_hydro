@@ -38,6 +38,7 @@ public class VgpHydroSampleMetaFileParser {
 		String zipFile = new DirectoryTreeReverseTraversalZipFileFinder(file.getParent()).findZipFile();
 		
 		VgpHydroSamplesMetaValidatorFactory vgpHydroSamplesMetaValidatorFactory = new VgpHydroSamplesMetaValidatorFactory();
+
 	}
 
 }
