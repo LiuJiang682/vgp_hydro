@@ -54,10 +54,10 @@ public class VgpHydroLocationMetaTemplateUpdater implements TemplateUpdater {
 		site.setLoaderId(sessionId);
 		//TODO -- Use reflection from the key list instead of hardcoding the order.
 		site.setSiteId(values.get(0));
-		site.setUwi(values.get(1));
-		site.setLocalName(values.get(2));
-		site.setLocalDescription(values.get(3));
-		site.setState(values.get(4));
+//		site.setUwi(values.get(1));
+//		site.setLocalName(values.get(2));
+//		site.setLocalDescription(values.get(3));
+//		site.setState(values.get(4));
 		
 		return site;
 	}
