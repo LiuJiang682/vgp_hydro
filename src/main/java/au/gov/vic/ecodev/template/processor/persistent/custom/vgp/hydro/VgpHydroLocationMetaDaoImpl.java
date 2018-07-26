@@ -1,5 +1,8 @@
 package au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -23,27 +26,30 @@ public class VgpHydroLocationMetaDaoImpl implements VgpHydroLocationMetaDao {
 	@Override
 	public boolean updateOrSave(Entity entity) {
 		LOGGER.info("Inside VgpHydroLocationMetaDaoImpl.updateOrSave");
-//		VgpHydroEntity vgpHydroEntity = (VgpHydroEntity)entity;
-//		int row = jdbcTemplate.update(INSERT_SQL, new Object[] {vgpHydroEntity.getId(), vgpHydroEntity.getLoaderId()});
-//		return 1 == row;
+		
 		Site site = (Site) entity;
-		int count = jdbcTemplate.queryForObject(COUNT_SQL, Integer.class, site.getLoaderId(), site.getSiteId());
-		if (Numerals.ZERO == count) {
-			int rows = jdbcTemplate.update(INSERT_SQL, new Object[] {site.getLoaderId(), site.getSiteId(),
-					site.getUwi(), site.getLocalName(), site.getLocalDescription(), site.getState(), site.getAmgZone(),
-					site.getEasting(), site.getNorthing(), site.getLocnDatumCd(), site.getLatitude(), 
-					site.getLongitude(), site.getKb(), site.getElevationGl(), site.getBoreDiameter(),
-					site.getTd(), site.getTvd(), site.getDepthDatum()});
-			return Numerals.ONE == rows;
-		} else {
-			int rows = jdbcTemplate.update(UPDATE_SQL, new Object[] {
-					site.getUwi(), site.getLocalName(), site.getLocalDescription(), site.getState(), site.getAmgZone(),
-					site.getEasting(), site.getNorthing(), site.getLocnDatumCd(), site.getLatitude(), 
-					site.getLongitude(), site.getKb(), site.getElevationGl(), site.getBoreDiameter(),
-					site.getTd(), site.getTvd(), site.getDepthDatum(),
-					site.getLoaderId(), site.getSiteId()});
-			return Numerals.ONE == rows;
-		}
+		SiteIdRepository.INSTANCE.add(site.getSiteId());
+		return true;
+
+		//TODO -- This part of code will be needed once the location meta table requirements are confirmed.
+//		
+//		int count = jdbcTemplate.queryForObject(COUNT_SQL, Integer.class, site.getLoaderId(), site.getSiteId());
+//		if (Numerals.ZERO == count) {
+//			int rows = jdbcTemplate.update(INSERT_SQL, new Object[] {site.getLoaderId(), site.getSiteId(),
+//					site.getUwi(), site.getLocalName(), site.getLocalDescription(), site.getState(), site.getAmgZone(),
+//					site.getEasting(), site.getNorthing(), site.getLocnDatumCd(), site.getLatitude(), 
+//					site.getLongitude(), site.getKb(), site.getElevationGl(), site.getBoreDiameter(),
+//					site.getTd(), site.getTvd(), site.getDepthDatum()});
+//			return Numerals.ONE == rows;
+//		} else {
+//			int rows = jdbcTemplate.update(UPDATE_SQL, new Object[] {
+//					site.getUwi(), site.getLocalName(), site.getLocalDescription(), site.getState(), site.getAmgZone(),
+//					site.getEasting(), site.getNorthing(), site.getLocnDatumCd(), site.getLatitude(), 
+//					site.getLongitude(), site.getKb(), site.getElevationGl(), site.getBoreDiameter(),
+//					site.getTd(), site.getTvd(), site.getDepthDatum(),
+//					site.getLoaderId(), site.getSiteId()});
+//			return Numerals.ONE == rows;
+//		}
 	}
 
 	@Override

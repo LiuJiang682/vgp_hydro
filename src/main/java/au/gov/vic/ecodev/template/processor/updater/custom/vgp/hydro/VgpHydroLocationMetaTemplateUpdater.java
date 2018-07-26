@@ -38,7 +38,7 @@ public class VgpHydroLocationMetaTemplateUpdater implements TemplateUpdater {
 		List<String> headers = template.get("1");
 		
 		for (int index = Numerals.TWO; index < len; index++) {
-			VgpHydroTemplateValue value = (VgpHydroTemplateValue) template.get(String.valueOf(index));
+			VgpHydroTemplateValue value = (VgpHydroTemplateValue) template.getTemplateValue(String.valueOf(index));
 			List<String> values = value.getDatas();
 			Site site = convertToSite(sessionId, headers, values);
 			dao.updateOrSave(site);

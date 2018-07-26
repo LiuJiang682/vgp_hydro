@@ -1,5 +1,6 @@
 package au.gov.vic.ecodev.template.file.custom.vgp.hydro;
 
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -37,7 +38,9 @@ public class FileNameTemplateFileSelectorTest {
 		Optional<List<String>> templateFileName = testInstance.getTemplateFileInDirectory(dataTemplate);
 		//Then
 		assertThat(templateFileName.isPresent(), is(true));
-		assertThat(CollectionUtils.isNotEmpty(templateFileName.get()), is(true));
+		List<String> fileNames = templateFileName.get();
+		assertThat(CollectionUtils.isNotEmpty(fileNames), is(true));
+		assertThat(fileNames.size(), is(equalTo(2)));
 	}
 	
 	@Test

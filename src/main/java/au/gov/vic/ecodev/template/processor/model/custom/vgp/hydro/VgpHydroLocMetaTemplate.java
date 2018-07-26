@@ -37,7 +37,7 @@ public class VgpHydroLocMetaTemplate implements Template {
 
 	@Override
 	public TemplateValue getTemplateValue(String key) {
-		return (TemplateValue) get(key);
+		return (TemplateValue) datas.get(key);
 	}
 
 }

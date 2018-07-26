@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
@@ -54,6 +55,7 @@ public class VgpHydroLocationMetaHeaderValidatorTest {
 		assertThat(messageList.get(0), is(equalTo("Header requires the Site_ID column")));
 	}
 	
+	@Ignore
 	@Test
 	public void shouldReturnMissingEastingMessageWhenHeadersNotIncludedEasting() {
 		//Given
@@ -70,6 +72,7 @@ public class VgpHydroLocationMetaHeaderValidatorTest {
 		assertThat(messageList.get(0), is(equalTo("Header requires the Easting column")));
 	}
 	
+	@Ignore
 	@Test
 	public void shouldReturnMissingNorthingMessageWhenHeadersNotIncludedNorthing() {
 		//Given

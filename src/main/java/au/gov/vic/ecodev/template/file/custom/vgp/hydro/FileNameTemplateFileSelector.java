@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.collections4.CollectionUtils;
 
+import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.mrt.template.file.TemplateFileSelector;
 import au.gov.vic.ecodev.utils.file.DirectoryFilesScanner;
 
@@ -40,12 +41,12 @@ public class FileNameTemplateFileSelector implements TemplateFileSelector {
 		List<String> fileNames = new ArrayList<>();
 		files.stream()
 			.forEach(file ->{
-				String fileName = file.getName();
+				String fileName = file.getName().toUpperCase();
 				dataTemplate.stream()
 					.forEach(template -> {
 						String prefix = template + UNDER_LINE;
-						if (fileName.startsWith(prefix)) {
-							fileNames.add(fileName);
+						if (fileName.startsWith(prefix.toUpperCase())) {
+							fileNames.add(template + Strings.SPACE + file.getAbsolutePath());
 						}
 					});
 			});

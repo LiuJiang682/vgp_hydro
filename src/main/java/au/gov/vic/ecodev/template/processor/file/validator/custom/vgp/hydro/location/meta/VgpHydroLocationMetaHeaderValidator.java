@@ -63,14 +63,14 @@ public class VgpHydroLocationMetaHeaderValidator implements Validator {
 			String message = "Header requires the Site_ID column";
 			messages.add(message);
 		}
-		if (!strs.stream().anyMatch(EASTING::equalsIgnoreCase)) {
-			String message = "Header requires the Easting column";
-			messages.add(message);
-		}
-		if (!strs.stream().anyMatch(NORTHING::equalsIgnoreCase)) {
-			String message = "Header requires the Northing column";
-			messages.add(message);
-		}
+//		if (!strs.stream().anyMatch(EASTING::equalsIgnoreCase)) {
+//			String message = "Header requires the Easting column";
+//			messages.add(message);
+//		}
+//		if (!strs.stream().anyMatch(NORTHING::equalsIgnoreCase)) {
+//			String message = "Header requires the Northing column";
+//			messages.add(message);
+//		}
 	}
 
 }
