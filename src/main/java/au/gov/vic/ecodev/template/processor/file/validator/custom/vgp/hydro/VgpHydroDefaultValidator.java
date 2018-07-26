@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta;
+package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.helper.ValidatorHelper;
 
-public class VgpHydroLocationMetaDefaultValidator implements Validator {
+public class VgpHydroDefaultValidator implements Validator {
 
 	private String[] strs;
 	

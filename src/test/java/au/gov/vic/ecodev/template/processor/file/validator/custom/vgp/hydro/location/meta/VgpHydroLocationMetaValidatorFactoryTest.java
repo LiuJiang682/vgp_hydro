@@ -12,6 +12,7 @@ import org.powermock.reflect.Whitebox;
 import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.processor.custom.vgp.hydro.TestFixture;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.VgpHydroDefaultValidator;
 
 public class VgpHydroLocationMetaValidatorFactoryTest {
 	
@@ -55,7 +56,7 @@ public class VgpHydroLocationMetaValidatorFactoryTest {
 		Validator validator = testInstance.getLineValidator("");
 		//Then
 		assertThat(validator, is(notNullValue()));
-		assertThat(validator, is(instanceOf(VgpHydroLocationMetaDefaultValidator.class)));
+		assertThat(validator, is(instanceOf(VgpHydroDefaultValidator.class)));
 	}
 	
 	@Test

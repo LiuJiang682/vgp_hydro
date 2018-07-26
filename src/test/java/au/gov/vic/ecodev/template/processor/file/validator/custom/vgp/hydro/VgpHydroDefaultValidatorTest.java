@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta;
+package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -22,9 +22,9 @@ import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroTemplateValue;
 
-public class VgpHydroLocationMetaDefaultValidatorTest {
+public class VgpHydroDefaultValidatorTest {
 
-	private  VgpHydroLocationMetaDefaultValidator testInstance;
+	private  VgpHydroDefaultValidator testInstance;
 	private Template mockDataBean;
 	private Map<String, List<String>> params;
 	
@@ -85,7 +85,7 @@ public class VgpHydroLocationMetaDefaultValidatorTest {
 	}
 
 	private void givenTestInstance() {
-		this.testInstance = new VgpHydroLocationMetaDefaultValidator();
+		this.testInstance = new VgpHydroDefaultValidator();
 		mockDataBean = Mockito.mock(Template.class);
 		params = new HashMap<>();
 	}

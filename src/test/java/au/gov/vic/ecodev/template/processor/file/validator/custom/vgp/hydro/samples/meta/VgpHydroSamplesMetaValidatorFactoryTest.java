@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
 import au.gov.vic.ecodev.template.processor.custom.vgp.hydro.TestFixture;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.VgpHydroDefaultValidator;
 
 public class VgpHydroSamplesMetaValidatorFactoryTest {
 
@@ -44,7 +45,7 @@ public class VgpHydroSamplesMetaValidatorFactoryTest {
 		Validator validator = testInstance.getLineValidator(null);
 		//Then
 		assertThat(validator, is(notNullValue()));
-		assertThat(validator, is(instanceOf(VgpHydroSamplesMetaDefaultValidator.class)));
+		assertThat(validator, is(instanceOf(VgpHydroDefaultValidator.class)));
 	}
 	
 	@Test

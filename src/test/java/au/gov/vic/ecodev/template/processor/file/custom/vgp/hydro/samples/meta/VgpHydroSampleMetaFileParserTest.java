@@ -26,7 +26,7 @@ public class VgpHydroSampleMetaFileParserTest {
 	private TemplateProcessorContext mockContext;
 
 	@Test
-	public void shouldBuildTemplateFile() {
+	public void shouldBuildTemplateFile() throws Exception {
 		// Given
 		givenTestInstance();
 		when(mockContext.saveDataBean(Matchers.any(Template.class))).thenReturn(true);
