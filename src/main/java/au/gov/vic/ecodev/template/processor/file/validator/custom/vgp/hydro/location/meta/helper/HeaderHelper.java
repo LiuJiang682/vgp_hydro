@@ -10,7 +10,7 @@ public class HeaderHelper {
 	
 	private final String header;
 
-	public HeaderHelper(String header) {
+	public HeaderHelper(final String header) {
 		this.header = header;
 	}
 

@@ -43,7 +43,7 @@ public class VgpHydroLocationMetaFileParser {
 		Map<String, List<String>> templateParamMap = new HashMap<>();
 		Template dataBean = new VgpHydroLocMetaTemplate();
 		String zipFile = new DirectoryTreeReverseTraversalZipFileFinder(file.getParent()).findZipFile();
-//		final List<String> mandatoryFields = getMandatoryValidateFields();
+
 		VgpHydroLocationMetaValidatorFactory vgpHydroValidatorFactory = new VgpHydroLocationMetaValidatorFactory();
 		
 		LineNumberReader lineNumberReader = getLineNumberReader();
