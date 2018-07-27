@@ -16,6 +16,7 @@ public interface Constants {
 		static final String COLUMN_HEADERS = "Column_headers";
 		static final String EMPTY = "";
 		static final String COMMA = ",";
+		static final String UNDER_LINE = "_";
 	}
 	
 	interface Numerals {

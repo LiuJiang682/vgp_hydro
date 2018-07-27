@@ -19,6 +19,7 @@ public class VgpHydroSamplesMetaValidatorFactory {
 			} else {
 				validator = new VgpHydroSamplesMetaDataValidator();
 			}
+			validator.init(strs);
 		}
 		return validator;
 	}

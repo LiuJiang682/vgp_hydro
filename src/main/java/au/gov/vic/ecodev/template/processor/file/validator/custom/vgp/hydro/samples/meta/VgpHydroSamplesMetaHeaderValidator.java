@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -16,6 +18,11 @@ import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.help
 import au.gov.vic.ecodev.utils.validator.helper.ErrorMessageChecker;
 
 public class VgpHydroSamplesMetaHeaderValidator  implements Validator {
+	
+	private static final String UOM_SUFFIX = " (m)";
+	private static final String REGEX_MULTI_SPACE = " +";
+	private static final String REGEX_UOM_SUFFIX = " \\(m\\)";
+	private static final String REGEX_MULTI_DELIM = "[ |-]{1}";
 	
 	private String[] strs;
 	
@@ -56,7 +63,10 @@ public class VgpHydroSamplesMetaHeaderValidator  implements Validator {
 	protected final void doMandatoryFieldCheck(List<String> messages, List<String> strs) {
 		for(VgpHydorSamplesMetaMandatoryHeaders header : VgpHydorSamplesMetaMandatoryHeaders.values()) {
 			String mandatoryHeaderString = header.getDisplayLabel();
-			if (!strs.stream().anyMatch(mandatoryHeaderString::equalsIgnoreCase)) {
+//			String mandatoryHeaderUomString = mandatoryHeaderString + UOM_SUFFIX;
+//			if (!strs.stream().anyMatch(str -> str.regionMatches(true, Numerals.ZERO, mandatoryHeaderString, 
+//					Numerals.ZERO, mandatoryHeaderString.length()))) {
+			if (!strs.stream().anyMatch(isMatched(mandatoryHeaderString))) {
 				String message = new StringBuilder("Sample Meta Data Header requires the ")
 						.append(mandatoryHeaderString)
 						.append(" column")
@@ -64,6 +74,22 @@ public class VgpHydroSamplesMetaHeaderValidator  implements Validator {
 				messages.add(message);
 			}
 		}
+	}
+	
+	protected final static Predicate<String> isMatched(final String label) {
+		return str -> {
+			str = str.trim().replaceAll(REGEX_MULTI_SPACE, Strings.SPACE);
+			if (str.equalsIgnoreCase(label)) {
+				return true;
+			} else if(str.equalsIgnoreCase(label + UOM_SUFFIX)) {
+				return true;
+			} else if (label.contains(Strings.UNDER_LINE)) {
+				String variation = label.replaceAll(Strings.UNDER_LINE, REGEX_MULTI_DELIM);
+				return Pattern.matches(variation, str) || Pattern.matches(variation + REGEX_UOM_SUFFIX, str);
+			} else {
+				return false;
+			}
+		};
 	}
 
 }
