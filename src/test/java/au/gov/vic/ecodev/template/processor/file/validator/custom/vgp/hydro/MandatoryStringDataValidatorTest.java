@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta;
+package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.Is.is;

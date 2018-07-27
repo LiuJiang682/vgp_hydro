@@ -1,14 +1,14 @@
-package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta;
+package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 
-public class MandatoryStringDataValidator {
+public class MandatoryNumberDataValidator {
 
 	private final String[] strs;
 	private final String lineNumber;
@@ -16,7 +16,7 @@ public class MandatoryStringDataValidator {
 	private final String code;
 	private final String templateName;
 	
-	public MandatoryStringDataValidator(final String[] strs, final String lineNumber, 
+	public MandatoryNumberDataValidator(final String[] strs, final String lineNumber, 
 			final List<String> columnHeaders, final String code,
 			final String templateName) {
 		this.strs = strs;
@@ -35,12 +35,13 @@ public class MandatoryStringDataValidator {
 			messages.add(constructMissingHeaderMessage(lineNumber));
 			return;
 		}
-	
+		
 		String string = null;
 		if (index < strs.length) {
 			string = strs[index];
 		}
-		if (StringUtils.isEmpty(string)) {
+		if((!NumberUtils.isParsable(string)) 
+				&& (!NumberUtils.isCreatable(string))) {
 			String message = new StringBuilder(Strings.LOG_ERROR_HEADER)
 					.append("Line ")
 					.append(lineNumber)
@@ -48,12 +49,13 @@ public class MandatoryStringDataValidator {
 					.append(templateName)
 					.append(" column ")
 					.append(code)
-					.append(" cannot be null or empty")
+					.append(" must be a number, but got: ")
+					.append(string)
 					.toString();
 			messages.add(message);
 		}
 	}
-
+	
 	private String constructMissingHeaderMessage(String currentLineNumber) {
 		String message = new StringBuilder(Strings.LOG_ERROR_HEADER)
 				.append("Line ")
