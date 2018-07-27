@@ -25,5 +25,6 @@ public interface Constants {
 		static final int ONE = 1;
 		static final int TWO = 2;
 		static final int THREE = 3;
+		static final int EIGHT = 8;
 	}
 }

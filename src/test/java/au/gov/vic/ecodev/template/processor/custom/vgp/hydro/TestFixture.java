@@ -18,4 +18,8 @@ public class TestFixture {
 
 	public static final String VGP_HYDRO_SAMPLES_META_HEADER = "SITE_ID\tSample_ID\tCORE ID\tLab_Code\tType\tPreparation_Code\tSampled_Date\tIGSN\tSample_Top\tSample_bottom\tStanding_Water_Level\tPumping_Depth\tReference\tSample_Area_Description";
 	public static final String VGP_HYDRO_SAMPLES_META_DATA = "110098\t\t\tGSV\tWater\t\t5/01/2018\t\tBennett Pump\t48\t66\t4.58\t54\t\t";
+
+	public static String[] getSamplesMetaHeaders() {
+		return VGP_HYDRO_SAMPLES_META_HEADER.split(Strings.TAB);
+	}
 }
