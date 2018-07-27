@@ -40,7 +40,7 @@ public class VgpHydroLocationMetaDataValidator implements Validator {
 	public Optional<List<String>> validate(Map<String, List<String>> templateParamMap, Template dataBean) {
 		List<String> messages = new ArrayList<>();
 		List<String> currentLineList = templateParamMap.get(Strings.CURRENT_LINE);
-		String currentLine = STRING_ZERO;
+		String currentLine = Strings.STRING_ZERO;
 		if (CollectionUtils.isNotEmpty(currentLineList)) {
 			currentLine = currentLineList.get(Numerals.ZERO);
 		}
