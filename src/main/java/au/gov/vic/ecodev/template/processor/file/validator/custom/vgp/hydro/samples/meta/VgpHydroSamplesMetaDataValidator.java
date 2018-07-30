@@ -11,9 +11,9 @@ import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.MandatoryNumberDataValidator;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.MandatoryStringDataValidator;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.helper.ValidatorHelper;
-import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta.VgpHydroLocationMetaHeaderValidator;
 import au.gov.vic.ecodev.utils.constants.Constants.Numeral;
 import au.gov.vic.ecodev.utils.validator.common.ListSizeValidator;
 
@@ -48,13 +48,28 @@ public class VgpHydroSamplesMetaDataValidator  implements Validator {
 			int columnCount = new ListSizeValidator(columnHeaders).validate(messages);
 			if (Numeral.INVALID_COLUMN_COUNT != columnCount) {
 				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
-						VgpHydorSamplesMetaMandatoryHeaders.SITE_ID.getDisplayLabel(), 
+						VgpHydroSamplesMetaMandatoryHeaders.SITE_ID.getDisplayLabel(), 
 						VGP_HYDRO_SAMPLES_META).validate(messages);
 				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
-						VgpHydorSamplesMetaMandatoryHeaders.SAMPLE_ID.getDisplayLabel(), 
+						VgpHydroSamplesMetaMandatoryHeaders.SAMPLE_ID.getDisplayLabel(), 
 						VGP_HYDRO_SAMPLES_META).validate(messages);
 				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
-						VgpHydorSamplesMetaMandatoryHeaders.IGSN.getDisplayLabel(), 
+						VgpHydroSamplesMetaMandatoryHeaders.IGSN.getDisplayLabel(), 
+						VGP_HYDRO_SAMPLES_META).validate(messages);
+				new MandatoryNumberDataValidator(strs, currentLine, columnHeaders, 
+						VgpHydroSamplesMetaMandatoryHeaders.SAMPLE_TOP.getDisplayLabel(),
+						VGP_HYDRO_SAMPLES_META).validate(messages);
+				new MandatoryNumberDataValidator(strs, currentLine, columnHeaders, 
+						VgpHydroSamplesMetaMandatoryHeaders.SAMPLE_BOTTOM.getDisplayLabel(),
+						VGP_HYDRO_SAMPLES_META).validate(messages);
+				new MandatoryNumberDataValidator(strs, currentLine, columnHeaders, 
+						VgpHydroSamplesMetaMandatoryHeaders.STANDING_WATER_LEVEL.getDisplayLabel(),
+						VGP_HYDRO_SAMPLES_META).validate(messages);
+				new MandatoryNumberDataValidator(strs, currentLine, columnHeaders, 
+						VgpHydroSamplesMetaMandatoryHeaders.PUMPING_DEPTH.getDisplayLabel(),
+						VGP_HYDRO_SAMPLES_META).validate(messages);
+				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
+						VgpHydroSamplesMetaMandatoryHeaders.REFERENCE.getDisplayLabel(), 
 						VGP_HYDRO_SAMPLES_META).validate(messages);
 			}
 		}

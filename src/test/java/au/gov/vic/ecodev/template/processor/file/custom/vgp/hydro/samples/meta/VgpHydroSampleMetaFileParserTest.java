@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 
 import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext;
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
-import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroLocMetaTemplate;
+import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroSamplesMetaTemplate;
 
 public class VgpHydroSampleMetaFileParserTest {
 
@@ -36,7 +36,7 @@ public class VgpHydroSampleMetaFileParserTest {
 		ArgumentCaptor<Template> dataBeanCaptor = ArgumentCaptor.forClass(Template.class);
 		verify(mockContext).saveDataBean(dataBeanCaptor.capture());
 		Template capturedDataBean = dataBeanCaptor.getValue();
-		assertThat(capturedDataBean, is(instanceOf(VgpHydroLocMetaTemplate.class)));
+		assertThat(capturedDataBean, is(instanceOf(VgpHydroSamplesMetaTemplate.class)));
 	}
 
 	@Test
@@ -69,7 +69,7 @@ public class VgpHydroSampleMetaFileParserTest {
 	}
 
 	private void givenTestInstance() {
-		testDataFile = new File("src/test/resources/testData/Samp_20180726.txt");
+		testDataFile = new File("src/test/resources/testData/Samp_20180730.txt");
 		mockContext = Mockito.mock(TemplateProcessorContext.class);
 		testInstance = new VgpHydroSampleMetaFileParser(testDataFile, mockContext);
 	}

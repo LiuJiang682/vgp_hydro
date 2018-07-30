@@ -1,6 +1,6 @@
 package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.meta;
 
-public enum VgpHydorSamplesMetaMandatoryHeaders {
+public enum VgpHydroSamplesMetaMandatoryHeaders {
 
 	 SITE_ID("Site_ID"),
 	 SAMPLE_ID("Sample_ID"),
@@ -11,7 +11,7 @@ public enum VgpHydorSamplesMetaMandatoryHeaders {
 	 PUMPING_DEPTH("Pumping_Depth"),
 	 REFERENCE("Reference");
 	
-	private VgpHydorSamplesMetaMandatoryHeaders(final String displayLabel) {
+	private VgpHydroSamplesMetaMandatoryHeaders(final String displayLabel) {
 		this.displayLabel = displayLabel;
 	}
 	

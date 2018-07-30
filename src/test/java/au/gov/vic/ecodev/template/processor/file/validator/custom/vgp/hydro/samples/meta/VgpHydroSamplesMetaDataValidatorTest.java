@@ -90,6 +90,91 @@ public class VgpHydroSamplesMetaDataValidatorTest {
 	}
 	
 	@Test
+	public void shouldReturnMissingSampleTopMessageWhenStrsIsMissingSampleTop() {
+		//Given
+		givenTestInstance();
+		String[] strs = TestFixture.getSamplesMetaData();
+		strs[Numerals.EIGHT] = null;
+		testInstance.init(strs);
+		templateParamMap.put(Strings.COLUMN_HEADERS, Arrays.asList(TestFixture.getSamplesMetaHeaders()));
+		//When
+		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
+		//Then
+		assertThat(messages.isPresent(), is(true));
+		List<String> messageList = messages.get();
+		assertThat(messageList.size(), is(equalTo(1)));
+		assertThat(messageList.get(0), is(equalTo("ERROR: Line 0: Template vgphydroSampMeta column Sample_Top must be a number, but got: null")));
+	}
+	
+	@Test
+	public void shouldReturnMissingSampleBottomMessageWhenStrsIsMissingSampleBottom() {
+		//Given
+		givenTestInstance();
+		String[] strs = TestFixture.getSamplesMetaData();
+		strs[Numerals.NINE] = null;
+		testInstance.init(strs);
+		templateParamMap.put(Strings.COLUMN_HEADERS, Arrays.asList(TestFixture.getSamplesMetaHeaders()));
+		//When
+		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
+		//Then
+		assertThat(messages.isPresent(), is(true));
+		List<String> messageList = messages.get();
+		assertThat(messageList.size(), is(equalTo(1)));
+		assertThat(messageList.get(0), is(equalTo("ERROR: Line 0: Template vgphydroSampMeta column Sample_Bottom must be a number, but got: null")));
+	}
+	
+	@Test
+	public void shouldReturnMissingStandingWaterLevelMessageWhenStrsIsMissingStandingWaterLevel() {
+		//Given
+		givenTestInstance();
+		String[] strs = TestFixture.getSamplesMetaData();
+		strs[Numerals.TEN] = null;
+		testInstance.init(strs);
+		templateParamMap.put(Strings.COLUMN_HEADERS, Arrays.asList(TestFixture.getSamplesMetaHeaders()));
+		//When
+		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
+		//Then
+		assertThat(messages.isPresent(), is(true));
+		List<String> messageList = messages.get();
+		assertThat(messageList.size(), is(equalTo(1)));
+		assertThat(messageList.get(0), is(equalTo("ERROR: Line 0: Template vgphydroSampMeta column Standing_Water_Level must be a number, but got: null")));
+	}
+	
+	@Test
+	public void shouldReturnMissingPumpingDepthMessageWhenStrsIsMissingPumpingDepth() {
+		//Given
+		givenTestInstance();
+		String[] strs = TestFixture.getSamplesMetaData();
+		strs[Numerals.ELEVEN] = null;
+		testInstance.init(strs);
+		templateParamMap.put(Strings.COLUMN_HEADERS, Arrays.asList(TestFixture.getSamplesMetaHeaders()));
+		//When
+		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
+		//Then
+		assertThat(messages.isPresent(), is(true));
+		List<String> messageList = messages.get();
+		assertThat(messageList.size(), is(equalTo(1)));
+		assertThat(messageList.get(0), is(equalTo("ERROR: Line 0: Template vgphydroSampMeta column Pumping_Depth must be a number, but got: null")));
+	}
+	
+	@Test
+	public void shouldReturnMissingReferenceMessageWhenStrsIsMissingReference() {
+		//Given
+		givenTestInstance();
+		String[] strs = TestFixture.getSamplesMetaData();
+		strs[Numerals.TWELVE] = null;
+		testInstance.init(strs);
+		templateParamMap.put(Strings.COLUMN_HEADERS, Arrays.asList(TestFixture.getSamplesMetaHeaders()));
+		//When
+		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
+		//Then
+		assertThat(messages.isPresent(), is(true));
+		List<String> messageList = messages.get();
+		assertThat(messageList.size(), is(equalTo(1)));
+		assertThat(messageList.get(0), is(equalTo("ERROR: Line 0: Template vgphydroSampMeta column Reference cannot be null or empty")));
+	}
+	
+	@Test
 	public void shouldReturnIncorrectSizeMessageWhenStrsIsLT8() {
 		//Given
 		givenTestInstance();

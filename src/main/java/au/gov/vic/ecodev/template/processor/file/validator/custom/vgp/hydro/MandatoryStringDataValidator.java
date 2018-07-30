@@ -1,12 +1,15 @@
 package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro;
 
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.StringUtils;
 
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.meta.VgpHydroSamplesMetaHeaderPredicate;
 
 public class MandatoryStringDataValidator {
 
@@ -27,21 +30,21 @@ public class MandatoryStringDataValidator {
 	}
 
 	public void validate(List<String> messages) {
-		int index = columnHeaders.stream()
-				.map(String::toUpperCase)
-				.collect(Collectors.toList())
-				.indexOf(code.toUpperCase());
-		if (Numerals.NOT_FOUND == index) {
-			messages.add(constructMissingHeaderMessage(lineNumber));
-			return;
-		}
-	
-		String string = null;
-		if (index < strs.length) {
-			string = strs[index];
-		}
-		if (StringUtils.isEmpty(string)) {
-			String message = new StringBuilder(Strings.LOG_ERROR_HEADER)
+//		List<String> columnHeaderUCList = columnHeaders.stream()
+//				.map(String::toUpperCase)
+//				.collect(Collectors.toList());
+		OptionalInt indexOpt = IntStream.range(Numerals.ZERO, columnHeaders.size())
+				.filter(i -> VgpHydroSamplesMetaHeaderPredicate.isMatched(code).test(columnHeaders.get(i)))
+				.findFirst();
+				
+		if (indexOpt.isPresent()) {
+			int index = indexOpt.getAsInt();
+			String string = null;
+			if (index < strs.length) {
+				string = strs[index];
+			}
+			if (StringUtils.isEmpty(string)) {
+				String message = new StringBuilder(Strings.LOG_ERROR_HEADER)
 					.append("Line ")
 					.append(lineNumber)
 					.append(": Template ")
@@ -50,7 +53,11 @@ public class MandatoryStringDataValidator {
 					.append(code)
 					.append(" cannot be null or empty")
 					.toString();
-			messages.add(message);
+				messages.add(message);
+			}	
+		} else {
+			messages.add(constructMissingHeaderMessage(lineNumber));
+			return;
 		}
 	}
 

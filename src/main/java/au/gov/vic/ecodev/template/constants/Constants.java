@@ -28,5 +28,9 @@ public interface Constants {
 		static final int THREE = 3;
 		static final int SEVEN = 7;
 		static final int EIGHT = 8;
+		static final int NINE = 9;
+		static final int TEN = 10;
+		static final int ELEVEN = 11;
+		static final int TWELVE = 12;
 	}
 }
