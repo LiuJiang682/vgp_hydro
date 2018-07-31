@@ -2,13 +2,11 @@ package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro;
 
 import java.util.List;
 import java.util.OptionalInt;
-import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
-import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.meta.VgpHydroSamplesMetaHeaderPredicate;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.meta.helper.HeaderHelper;
 
 public class MandatoryNumberDataValidator {
 
@@ -29,9 +27,7 @@ public class MandatoryNumberDataValidator {
 	}
 
 	public void validate(List<String> messages) {
-		OptionalInt indexOpt = IntStream.range(Numerals.ZERO, columnHeaders.size())
-				.filter(i -> VgpHydroSamplesMetaHeaderPredicate.isMatched(code).test(columnHeaders.get(i)))
-				.findFirst();
+		OptionalInt indexOpt = new HeaderHelper(code).findHeaderIndex(columnHeaders);
 		
 		if (indexOpt.isPresent()) {
 			int index = indexOpt.getAsInt();

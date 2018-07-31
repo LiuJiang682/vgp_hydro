@@ -2,6 +2,11 @@ package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.sam
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
+
+import au.gov.vic.ecodev.template.constants.Constants.Numerals;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.meta.VgpHydroSamplesMetaHeaderPredicate;
 
 public class HeaderHelper {
 
@@ -18,4 +23,11 @@ public class HeaderHelper {
 				.anyMatch(header::equalsIgnoreCase);
 	}
 
+	public OptionalInt findHeaderIndex(final List<String> headers) {
+		OptionalInt indexOpt = IntStream.range(Numerals.ZERO, headers.size())
+				.filter(i -> VgpHydroSamplesMetaHeaderPredicate.isMatched(header)
+						.test(headers.get(i)))
+				.findFirst();
+		return indexOpt;
+	}
 }

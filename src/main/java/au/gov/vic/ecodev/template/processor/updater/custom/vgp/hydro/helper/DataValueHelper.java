@@ -6,13 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.OptionalInt;
-import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
-import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.meta.VgpHydroSamplesMetaHeaderPredicate;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.meta.helper.HeaderHelper;
 
 public class DataValueHelper {
 
@@ -21,7 +20,7 @@ public class DataValueHelper {
 	public final Timestamp getDataValueAsTimestamp(final List<String> headers, 
 			final List<String> datas, final String fieldName) {
 		String value = null;
-		OptionalInt indexOpt = findHeaderIndex(headers, fieldName);
+		OptionalInt indexOpt = new HeaderHelper(fieldName).findHeaderIndex(headers);
 		if (indexOpt.isPresent()) {
 			int index = indexOpt.getAsInt();
 			if (index < datas.size()) {
@@ -43,7 +42,7 @@ public class DataValueHelper {
 	public final String getDataValueAsString(final List<String> headers, 
 			final List<String> datas, final String fieldName) {
 		String value = null;
-		OptionalInt indexOpt = findHeaderIndex(headers, fieldName);
+		OptionalInt indexOpt = new HeaderHelper(fieldName).findHeaderIndex(headers);
 		if (indexOpt.isPresent()) {
 			int index = indexOpt.getAsInt();
 			if (index < datas.size()) {
@@ -56,7 +55,7 @@ public class DataValueHelper {
 	public final long getDataValueAsLong(final List<String> headers, 
 			final List<String> datas, final String fieldName) {
 		long value = Numerals.NOT_FOUND;
-		OptionalInt indexOpt = findHeaderIndex(headers, fieldName);
+		OptionalInt indexOpt = new HeaderHelper(fieldName).findHeaderIndex(headers);
 		if (indexOpt.isPresent()) {
 			int index = indexOpt.getAsInt();
 			if (index < datas.size()) {
@@ -70,14 +69,14 @@ public class DataValueHelper {
 		return value;
 	}
 	
-	public final OptionalInt findHeaderIndex(final List<String> headers, 
-			final String fieldName) {
-		OptionalInt indexOpt = IntStream.range(Numerals.ZERO, headers.size())
-				.filter(i -> VgpHydroSamplesMetaHeaderPredicate.isMatched(fieldName)
-						.test(headers.get(i)))
-				.findFirst();
-		return indexOpt;
-	}
+//	public final OptionalInt findHeaderIndex(final List<String> headers, 
+//			final String fieldName) {
+//		OptionalInt indexOpt = IntStream.range(Numerals.ZERO, headers.size())
+//				.filter(i -> VgpHydroSamplesMetaHeaderPredicate.isMatched(fieldName)
+//						.test(headers.get(i)))
+//				.findFirst();
+//		return indexOpt;
+//	}
 
 	public BigDecimal getDataValueAsBigDecimal(final List<String> headers,
 			final List<String> datas, final String fieldName) {

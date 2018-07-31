@@ -9,7 +9,6 @@ import static org.junit.Assert.assertThat;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
-import java.util.OptionalInt;
 
 import org.junit.Test;
 
@@ -90,19 +89,6 @@ public class DataValueHelperTest {
 		long sampleId = testInstance.getDataValueAsLong(headers, datas, "CORE ID");
 		//Then
 		assertThat(sampleId, is(equalTo(-1l)));
-	}
-	
-	@Test
-	public void shouldReturnIndexOfIgsn() {
-		//Given
-		testInstance = new DataValueHelper();
-		List<String> headers = Arrays.asList(TestFixture.getSamplesMetaHeaders());
-		String fieldName = "IGSN";
-		//When
-		OptionalInt indexOpt = testInstance.findHeaderIndex(headers, fieldName);
-		//Then
-		assertThat(indexOpt.isPresent(), is(true));
-		assertThat(indexOpt.getAsInt(), is(equalTo(7)));
 	}
 	
 	@Test
