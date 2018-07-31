@@ -9,21 +9,40 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.util.ArrayList;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
+import org.powermock.reflect.Whitebox;
 
 import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext;
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroSamplesMetaTemplate;
+import au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro.SiteIdRepository;
 
 public class VgpHydroSampleMetaFileParserTest {
 
 	private VgpHydroSampleMetaFileParser testInstance;
 	private File testDataFile;
 	private TemplateProcessorContext mockContext;
+	
+	@BeforeClass
+	public static void setUpSiteIdRepository() {
+		SiteIdRepository siteIdRepository = SiteIdRepository.INSTANCE;
+		siteIdRepository.add("141912");
+		siteIdRepository.add("104929");
+		siteIdRepository.add("108904");
+		siteIdRepository.add("108932");
+	}
+	
+	@AfterClass
+	public static void tearDownSiteIdRepository() {
+		Whitebox.setInternalState(SiteIdRepository.INSTANCE, "siteIds", new ArrayList<>());
+	}
 
 	@Test
 	public void shouldBuildTemplateFile() throws Exception {

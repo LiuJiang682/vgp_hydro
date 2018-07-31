@@ -5,19 +5,23 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.junit.AfterClass;
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.custom.vgp.hydro.TestFixture;
 import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroLocMetaTemplate;
+import au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro.SiteIdRepository;
 
 public class VgpHydroSamplesMetaDataValidatorTest {
 
@@ -25,10 +29,16 @@ public class VgpHydroSamplesMetaDataValidatorTest {
 	private Map<String, List<String>> templateParamMap;
 	private Template dataBean;
 	
+	@AfterClass
+	public static void tearDownClass() {
+		Whitebox.setInternalState(SiteIdRepository.INSTANCE, "siteIds", new ArrayList<>());
+	}
+	
 	@Test
 	public void shouldReturnEmptyMessageWhenCorrectDataProvided() {
 		//Given
 		givenTestInstance();
+		givenSiteIdRepositoryTestConditions();
 		String[] strs = TestFixture.getSamplesMetaData();
 		testInstance.init(strs);
 		templateParamMap.put(Strings.COLUMN_HEADERS, Arrays.asList(TestFixture.getSamplesMetaHeaders()));
@@ -51,8 +61,9 @@ public class VgpHydroSamplesMetaDataValidatorTest {
 		//Then
 		assertThat(messages.isPresent(), is(true));
 		List<String> messageList = messages.get();
-		assertThat(messageList.size(), is(equalTo(1)));
+		assertThat(messageList.size(), is(equalTo(2)));
 		assertThat(messageList.get(0), is(equalTo("ERROR: Line 0: Template vgphydroSampMeta column Site_ID cannot be null or empty")));
+		assertThat(messageList.get(1), is(equalTo("ERROR: Line 0: Template vgphydroSampMeta column SITE_ID is NO exist in Location Metadata table null")));
 	}
 	
 	@Test
@@ -110,6 +121,7 @@ public class VgpHydroSamplesMetaDataValidatorTest {
 	public void shouldReturnMissingSampleBottomMessageWhenStrsIsMissingSampleBottom() {
 		//Given
 		givenTestInstance();
+		givenSiteIdRepositoryTestConditions();
 		String[] strs = TestFixture.getSamplesMetaData();
 		strs[Numerals.NINE] = null;
 		testInstance.init(strs);
@@ -216,5 +228,11 @@ public class VgpHydroSamplesMetaDataValidatorTest {
 		testInstance = new VgpHydroSamplesMetaDataValidator();
 		templateParamMap = new HashMap<>();
 		dataBean = new VgpHydroLocMetaTemplate();
+	}
+	
+	private void givenSiteIdRepositoryTestConditions() {
+		if (!SiteIdRepository.INSTANCE.contains("110098")) {
+			SiteIdRepository.INSTANCE.add("110098");
+		}
 	}
 }

@@ -69,15 +69,6 @@ public class DataValueHelper {
 		return value;
 	}
 	
-//	public final OptionalInt findHeaderIndex(final List<String> headers, 
-//			final String fieldName) {
-//		OptionalInt indexOpt = IntStream.range(Numerals.ZERO, headers.size())
-//				.filter(i -> VgpHydroSamplesMetaHeaderPredicate.isMatched(fieldName)
-//						.test(headers.get(i)))
-//				.findFirst();
-//		return indexOpt;
-//	}
-
 	public BigDecimal getDataValueAsBigDecimal(final List<String> headers,
 			final List<String> datas, final String fieldName) {
 		long value = getDataValueAsLong(headers, datas, fieldName);

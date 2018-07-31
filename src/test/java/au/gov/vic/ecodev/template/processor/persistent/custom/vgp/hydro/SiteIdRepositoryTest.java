@@ -5,13 +5,20 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 import org.powermock.reflect.Whitebox;
 
 public class SiteIdRepositoryTest {
 
+	@AfterClass
+	public static void tearDownClass() {
+		Whitebox.setInternalState(SiteIdRepository.INSTANCE, "siteIds", new ArrayList<>());
+	}
+	
 	@Test
 	public void shouldAddEntryToRepository() {
 		//Given

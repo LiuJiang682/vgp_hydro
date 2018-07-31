@@ -17,4 +17,7 @@ public enum SiteIdRepository {
 		siteIds.add(siteId);
 	}
 	
+	public boolean contains(final String siteId) {
+		return siteIds.contains(siteId);
+	}
 }

@@ -50,6 +50,8 @@ public class VgpHydroSamplesMetaDataValidator  implements Validator {
 				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
 						VgpHydroSamplesMetaMandatoryHeaders.SITE_ID.getDisplayLabel(), 
 						VGP_HYDRO_SAMPLES_META).validate(messages);
+				new SiteIdLocationValidator(strs, currentLine, columnHeaders,
+						VGP_HYDRO_SAMPLES_META).validate(messages);
 				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
 						VgpHydroSamplesMetaMandatoryHeaders.SAMPLE_ID.getDisplayLabel(), 
 						VGP_HYDRO_SAMPLES_META).validate(messages);
