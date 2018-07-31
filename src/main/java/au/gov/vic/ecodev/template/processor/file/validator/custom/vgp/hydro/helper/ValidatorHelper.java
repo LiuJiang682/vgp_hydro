@@ -39,8 +39,7 @@ public class ValidatorHelper {
 		} else {
 			if ((null != dataBean) 
 					&& (ArrayUtils.isNotEmpty(datas))) {
-				String[] newDatas = Arrays.copyOfRange(datas, Numerals.ZERO, datas.length);
-				List<String> values = Arrays.asList(newDatas);
+				List<String> values = Arrays.asList(datas);
 				VgpHydroTemplateValue value = new VgpHydroTemplateValue(values, issueColumnIndex);
 				dataBean.put(currentLine, value);
 			}

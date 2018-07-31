@@ -37,10 +37,10 @@ public class VgpHydroSamplesMetaTemplateUpdater implements TemplateUpdater {
 			throw new TemplateProcessorException("Dao list cannot be null or empty!");
 		}
 		
-		List<String> headers = template.get(Strings.STRING_ZERO);
+		List<String> headers = template.get(String.valueOf(Numerals.ONE));
 		int len = template.getKeys().size();
 		Dao dao = daos.get(Numerals.ZERO);
-		for(int index = Numerals.ONE; index < len; index++) {
+		for(int index = Numerals.TWO; index <= len; index++) {
 			List<String> datas = template.get(String.valueOf(index));
 			SampleMeta sampleMeta = new SampleMetaBuilder(sessionId, headers, datas).build();
 			dao.updateOrSave(sampleMeta);

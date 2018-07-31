@@ -6,6 +6,7 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
@@ -99,6 +100,38 @@ public class DataValueHelperTest {
 		long sampleId = testInstance.getDataValueAsLong(headers, datas, "SAMPLE_ID");
 		//Then
 		assertThat(sampleId, is(equalTo(123l)));
+	}
+	
+	@Test
+	public void shouldReturnBigDecimalAsSampleToWhenGetDataValueAsBigDecimalCalled() {
+		//Given
+		givenTestInstanceWithData();
+		//When
+		BigDecimal sampleTop = testInstance.getDataValueAsBigDecimal(headers, datas, "SAMPLE_TOP");
+		//Then
+		assertThat(sampleTop, is(equalTo(new BigDecimal("48"))));
+	}
+	
+	@Test
+	public void shouldReturnBigDecimalAsSampleToWhenGetDataValueAsBigDecimalCalledWithDecimalPointData() {
+		//Given
+		givenTestInstanceWithData();
+		datas.set(8, "123.45");
+		//When
+		BigDecimal sampleTop = testInstance.getDataValueAsBigDecimal(headers, datas, "SAMPLE_TOP");
+		//Then
+		assertThat(sampleTop, is(equalTo(new BigDecimal("123.45"))));
+	}
+	
+	@Test
+	public void shouldReturnNotFoundAsSampleToWhenGetDataValueAsBigDecimalCalledWithNullData() {
+		//Given
+		givenTestInstanceWithData();
+		datas.set(8, null);
+		//When
+		BigDecimal sampleTop = testInstance.getDataValueAsBigDecimal(headers, datas, "SAMPLE_TOP");
+		//Then
+		assertThat(sampleTop, is(equalTo(new BigDecimal("-1"))));
 	}
 	
 	private void givenTestInstanceWithData() {

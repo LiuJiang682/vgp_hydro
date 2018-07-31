@@ -54,7 +54,7 @@ public class VgpHydroLocationMetaHeaderValidator implements Validator {
 		if (!hasErrorMessage) {
 			templateParamMap.put(Strings.COLUMN_HEADERS, headers);
 		} 
-		return  new ValidatorHelper(messages, currentLine, hasErrorMessage)
+		return new ValidatorHelper(messages, currentLine, hasErrorMessage)
 				.updateDataBeanOrCreateErrorOptional(strs, dataBean);
 	}
 

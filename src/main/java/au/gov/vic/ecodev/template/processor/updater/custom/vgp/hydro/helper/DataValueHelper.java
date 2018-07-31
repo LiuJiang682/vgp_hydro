@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.OptionalInt;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.log4j.Logger;
 
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
@@ -71,7 +72,12 @@ public class DataValueHelper {
 	
 	public BigDecimal getDataValueAsBigDecimal(final List<String> headers,
 			final List<String> datas, final String fieldName) {
-		long value = getDataValueAsLong(headers, datas, fieldName);
-		return new BigDecimal(value);
+		String valueString = getDataValueAsString(headers, datas, fieldName);
+		BigDecimal value = new BigDecimal(String.valueOf(Numerals.NOT_FOUND));
+		if (NumberUtils.isParsable(valueString) 
+				|| (NumberUtils.isCreatable(valueString))) {
+			value = new BigDecimal(valueString);
+		}
+		return value;
 	}
 }

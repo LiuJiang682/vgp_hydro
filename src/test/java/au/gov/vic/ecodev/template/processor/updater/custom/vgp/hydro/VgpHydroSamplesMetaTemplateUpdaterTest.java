@@ -35,8 +35,8 @@ public class VgpHydroSamplesMetaTemplateUpdaterTest {
 		//Given
 		givenTestInstance();
 		List<String> headers = Arrays.asList(TestFixture.getSamplesMetaHeaders());
-		template.put("0", headers);
-		template.put("1", Arrays.asList(TestFixture.getSamplesMetaData()));
+		template.put("1", headers);
+		template.put("2", Arrays.asList(TestFixture.getSamplesMetaData()));
 		//When
 		testInstance.update(1, template);
 		//Then
@@ -46,11 +46,11 @@ public class VgpHydroSamplesMetaTemplateUpdaterTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void shouldRiaseExceptionWhenTemplateHasNotHeader() throws TemplateProcessorException {
+	public void shouldRaiseExceptionWhenTemplateHasNotHeader() throws TemplateProcessorException {
 		//Given
 		givenTestInstance();
-		template.put("1", Arrays.asList(TestFixture.getSamplesMetaData()));
 		template.put("2", Arrays.asList(TestFixture.getSamplesMetaData()));
+		template.put("3", Arrays.asList(TestFixture.getSamplesMetaData()));
 		//When
 		testInstance.update(0, template);
 		fail("Program reached unexpected point!");
