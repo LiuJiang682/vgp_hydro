@@ -16,6 +16,7 @@ import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.Mand
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.helper.ValidatorHelper;
 import au.gov.vic.ecodev.utils.constants.Constants.Numeral;
 import au.gov.vic.ecodev.utils.validator.common.ListSizeValidator;
+import au.gov.vic.ecodev.utils.validator.helper.ErrorMessageChecker;
 
 public class VgpHydroSamplesMetaDataValidator  implements Validator {
 	
@@ -38,10 +39,10 @@ public class VgpHydroSamplesMetaDataValidator  implements Validator {
 		}
 		
 		if (null == strs) {
-			String message = "Location meta data record requires minimum 8 columns, only got 0";
+			String message = "Samples meta data record requires minimum 8 columns, only got 0";
 			messages.add(message);
 		} else if (strs.length < Numerals.EIGHT) {
-			String message = "Location meta data record requires minimum 8 columns, only got " + strs.length;
+			String message = "Samples meta data record requires minimum 8 columns, only got " + strs.length;
 			messages.add(message);
 		} else {
 			List<String> columnHeaders = templateParamMap.get(Strings.COLUMN_HEADERS);
@@ -76,7 +77,8 @@ public class VgpHydroSamplesMetaDataValidator  implements Validator {
 			}
 		}
 		
-		return new ValidatorHelper(messages, currentLine, false)
+		boolean hasErrorMessage = new ErrorMessageChecker(messages).isContainsErrorMessages();
+		return new ValidatorHelper(messages, currentLine, hasErrorMessage)
 				.updateDataBeanOrCreateErrorOptional(strs, dataBean);
 	}
 

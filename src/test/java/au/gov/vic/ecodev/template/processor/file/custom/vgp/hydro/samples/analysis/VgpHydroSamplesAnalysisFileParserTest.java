@@ -6,11 +6,13 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 import au.gov.vic.ecodev.mrt.template.processor.context.TemplateProcessorContext;
@@ -24,9 +26,10 @@ public class VgpHydroSamplesAnalysisFileParserTest {
 	private TemplateProcessorContext mockContext;
 	
 	@Test
-	public void shouldBuildTemplateFile() {
+	public void shouldBuildTemplateFile() throws Exception {
 		//Given
 		givenTestInstance();
+		when(mockContext.saveDataBean(Matchers.any(Template.class))).thenReturn(true);
 		//When
 		testInstance.parse();
 		//Then

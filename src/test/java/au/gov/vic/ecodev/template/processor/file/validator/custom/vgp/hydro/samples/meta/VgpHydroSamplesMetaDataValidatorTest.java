@@ -198,7 +198,7 @@ public class VgpHydroSamplesMetaDataValidatorTest {
 		assertThat(messages.isPresent(), is(true));
 		List<String> messageList = messages.get();
 		assertThat(messageList.size(), is(equalTo(1)));
-		assertThat(messageList.get(0), is(equalTo("Location meta data record requires minimum 8 columns, only got 7")));
+		assertThat(messageList.get(0), is(equalTo("Samples meta data record requires minimum 8 columns, only got 7")));
 	}
 	
 	@Test
@@ -212,7 +212,7 @@ public class VgpHydroSamplesMetaDataValidatorTest {
 		assertThat(messages.isPresent(), is(true));
 		List<String> messageList = messages.get();
 		assertThat(messageList.size(), is(equalTo(1)));
-		assertThat(messageList.get(0), is(equalTo("Location meta data record requires minimum 8 columns, only got 0")));
+		assertThat(messageList.get(0), is(equalTo("Samples meta data record requires minimum 8 columns, only got 0")));
 	}
 	
 	@Test

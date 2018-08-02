@@ -32,5 +32,6 @@ public interface Constants {
 		static final int TEN = 10;
 		static final int ELEVEN = 11;
 		static final int TWELVE = 12;
+		static final int FOUR = 4;
 	}
 }
