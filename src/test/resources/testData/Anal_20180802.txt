@@ -1,0 +1,5 @@
+SITE_ID	IGSN	Lab_Sample_Number	Anaylsed_Date	Parameter	Result	UOM	Analysis_ Method	LOR
+80734			7/08/2017 14:34	DWT	97.82	m	Observation	
+80734			7/08/2017 14:34	Volume	250	L	Observation	
+80734			7/08/2017 14:34	DO	0.14	ppm	Analysis	
+80734			7/08/2017 14:34	EC	186.6	us/cm	Analysis	
