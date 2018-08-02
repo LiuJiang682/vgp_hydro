@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta.helper;
+package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.analysis.helper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,12 +6,11 @@ import java.util.List;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.helper.HeaderMatcher;
 
 public class HeaderHelper {
-	
-	//TODO -- Should convert to enum???
-	private static final List<String> HEADERS = Arrays.asList("Site_ID", "UWI", "Local_Name", "Location_Desc", "State", "Grid/Zone", "Easting", "Northing", "Datum", "Latitude", "Longitude", "KB", "Elevation", "Bore Diameter", "TD", "TVD", "Depth Datum");
+
+	private static final List<String> HEADERS = Arrays.asList("SITE_ID", "IGSN", "Lab_Sample_Number", "Analysed_Date", "Parameter", "Result", "UOM", "Analysis_Method", "LOR");
 	
 	private final String header;
-
+	
 	public HeaderHelper(final String header) {
 		this.header = header;
 	}

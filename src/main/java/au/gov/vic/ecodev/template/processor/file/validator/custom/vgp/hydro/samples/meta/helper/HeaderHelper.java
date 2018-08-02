@@ -6,6 +6,7 @@ import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.helper.HeaderMatcher;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.meta.VgpHydroSamplesMetaHeaderPredicate;
 
 public class HeaderHelper {
@@ -19,8 +20,7 @@ public class HeaderHelper {
 	}
 
 	public boolean isOneOfHeaders() {
-		return HEADERS.stream()
-				.anyMatch(header::equalsIgnoreCase);
+		return new HeaderMatcher(header, HEADERS).isOneOfHeaders();
 	}
 
 	public OptionalInt findHeaderIndex(final List<String> headers) {
