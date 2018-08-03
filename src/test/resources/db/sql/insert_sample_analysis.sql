@@ -1,0 +1,1 @@
+INSERT INTO SAMP_ANALYSIS values(1, 1, 1, '1', 'l', systimestamp, 'abc', '5', '7', 'ref1', '1');

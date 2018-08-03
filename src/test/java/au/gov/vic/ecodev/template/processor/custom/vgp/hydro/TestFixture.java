@@ -27,7 +27,7 @@ public class TestFixture {
 		return VGP_HYDRO_SAMPLES_META_DATA.split(Strings.TAB);
 	}
 
-	public static final String VGP_HYDRO_SAMPLE_ANALYSIS_HEADERS = "SITE_ID\tIGSN\tLab_Sample_Number\tAnaylsed_Date\tParameter\tResult\tUOM\tAnalysis_ Method\tLOR";
+	public static final String VGP_HYDRO_SAMPLE_ANALYSIS_HEADERS = "SITE_ID\tIGSN\tLab_Sample_Number\tAnaylsed_Date\tParameter\tResult\tUOM\tAnalysis Method\tLOR";
 	public static final String VGP_HYDRO_SAMPLE_ANALYSIS_DATA = "80734\t\t\t7/08/2017 14:34\tDWT\t97.82\tm\tObservation\t";
 
 	public static String[] getSamplesAnalysisHeaders() {

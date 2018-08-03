@@ -18,7 +18,7 @@ public class DataValueHelper {
 
 	private static final Logger LOGGER = Logger.getLogger(DataValueHelper.class);
 	
-	public final Timestamp getDataValueAsTimestamp(final List<String> headers, 
+	public final Timestamp getDataValueAsTimestampToDate(final List<String> headers, 
 			final List<String> datas, final String fieldName) {
 		String value = null;
 		OptionalInt indexOpt = new HeaderHelper(fieldName).findHeaderIndex(headers);
@@ -31,6 +31,28 @@ public class DataValueHelper {
 		try {
 			if (StringUtils.isNotBlank(value)) {
 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				Date date = sdf.parse(value);
+				return new Timestamp(date.getTime());
+			}
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+		return null;
+	}
+	
+	public final Timestamp getDataValueAsTimestampToHour(final List<String> headers, 
+			final List<String> datas, final String fieldName) {
+		String value = null;
+		OptionalInt indexOpt = new HeaderHelper(fieldName).findHeaderIndex(headers);
+		if (indexOpt.isPresent()) {
+			int index = indexOpt.getAsInt();
+			if (index < datas.size()) {
+				value = datas.get(index);
+			}
+		}
+		try {
+			if (StringUtils.isNotBlank(value)) {
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 				Date date = sdf.parse(value);
 				return new Timestamp(date.getTime());
 			}

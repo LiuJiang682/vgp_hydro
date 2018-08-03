@@ -56,7 +56,7 @@ public class DataValueHelperTest {
 		//Given
 		givenTestInstanceWithData();
 		//When
-		Timestamp timestamp = testInstance.getDataValueAsTimestamp(headers, datas, "Sampled_Date");
+		Timestamp timestamp = testInstance.getDataValueAsTimestampToDate(headers, datas, "Sampled_Date");
 		//Then
 		assertThat(timestamp, is(notNullValue()));
 		assertThat(timestamp.toString(), is(equalTo("2018-01-05 00:00:00.0")));
@@ -67,7 +67,7 @@ public class DataValueHelperTest {
 		//Given
 		givenTestInstanceWithData();
 		//When
-		Timestamp timestamp = testInstance.getDataValueAsTimestamp(headers, datas, "Preparation Code");
+		Timestamp timestamp = testInstance.getDataValueAsTimestampToDate(headers, datas, "Preparation Code");
 		//Then
 		assertThat(timestamp, is(nullValue()));
 	}
@@ -77,7 +77,7 @@ public class DataValueHelperTest {
 		//Given
 		givenTestInstanceWithData();
 		//When
-		Timestamp timestamp = testInstance.getDataValueAsTimestamp(headers, datas, "Lab Code");
+		Timestamp timestamp = testInstance.getDataValueAsTimestampToDate(headers, datas, "Lab Code");
 		//Then
 		assertThat(timestamp, is(nullValue()));
 	}
