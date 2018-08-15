@@ -32,6 +32,8 @@ public class VgpHydroObservationsDataValidatorTest {
 		//Given
 		givenTestInstance();
 		testInstance.init(TestFixture.getObservationsDatas());
+		templateParamMap.put(Strings.COLUMN_HEADERS, 
+				Arrays.asList(TestFixture.getObservationHeaders()));
 		//When
 		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
 		//Then

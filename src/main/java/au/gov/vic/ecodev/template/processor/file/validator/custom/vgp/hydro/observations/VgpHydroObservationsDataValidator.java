@@ -12,6 +12,7 @@ import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.MandatoryStringDataValidator;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.MandatoryTimeDataValidator;
 import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.helper.ValidatorHelper;
 import au.gov.vic.ecodev.utils.constants.Constants.Numeral;
 import au.gov.vic.ecodev.utils.validator.common.ListSizeValidator;
@@ -19,7 +20,9 @@ import au.gov.vic.ecodev.utils.validator.helper.ErrorMessageChecker;
 
 public class VgpHydroObservationsDataValidator implements Validator {
 
+	private static final String TIME_FORMAT = "dd/MM/yyyy hh:mm";
 	private static final String VGP_HYDRO_OBSERVATIONS = "vgphydroObservation";
+	
 	private String[] strs;
 	
 	@Override
@@ -52,7 +55,7 @@ public class VgpHydroObservationsDataValidator implements Validator {
 				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
 						VgpHydroObservationsMandatoryHeaders.IGSN.getCode(), 
 						VGP_HYDRO_OBSERVATIONS).validate(messages);
-				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
+				new MandatoryTimeDataValidator(TIME_FORMAT, strs, currentLine, columnHeaders,
 						VgpHydroObservationsMandatoryHeaders.SAMPLE_TIME.getCode(), 
 						VGP_HYDRO_OBSERVATIONS).validate(messages);
 			}
