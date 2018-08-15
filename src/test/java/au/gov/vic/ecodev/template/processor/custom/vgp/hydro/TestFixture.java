@@ -1,5 +1,7 @@
 package au.gov.vic.ecodev.template.processor.custom.vgp.hydro;
 
+import java.io.File;
+
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
 
 public class TestFixture {
@@ -36,5 +38,20 @@ public class TestFixture {
 
 	public static String[] getSamplesAnalysisDatas() {
 		return VGP_HYDRO_SAMPLE_ANALYSIS_DATA.split(Strings.TAB);
+	}
+
+	public static File getObservationTestDataFile() {
+		return new File("src/test/resources/testData/Obs_20180813.txt");
+	}
+
+	public static final String VGP_HYDRO_OBSERVATIONS_HEADERS = "SITE_ID\tSample ID\tIGSN\tDate/Date_Time\tParameter\tDepth From (m)\tResult/Observation\tObserver\tType";
+	public static final String VGP_HYDRO_OBSERVATIONS_DATAS = "325823\t\tIGSN\t25/12/2017\tFormation Top\t1697\tEumerella Formation\tShannon Herley\tCore";
+	
+	public static String[] getObservationHeaders() {
+		return VGP_HYDRO_OBSERVATIONS_HEADERS.split(Strings.TAB);
+	}
+
+	public static String[] getObservationsDatas() {
+		return VGP_HYDRO_OBSERVATIONS_DATAS.split(Strings.TAB);
 	}
 }

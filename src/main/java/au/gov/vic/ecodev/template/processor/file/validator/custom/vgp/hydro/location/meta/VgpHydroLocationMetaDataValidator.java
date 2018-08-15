@@ -28,8 +28,6 @@ public class VgpHydroLocationMetaDataValidator implements Validator {
 	
 	private static final String VGP_HYDRO_LOC_META = "vgphydroLocMeta";
 
-	private static final String STRING_ZERO = "0";
-
 	private String[] strs;
 	
 	@Override

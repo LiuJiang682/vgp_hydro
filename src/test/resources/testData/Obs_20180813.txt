@@ -1,0 +1,26 @@
+SITE_ID	Sample ID	IGSN	Date/Date_Time	Parameter	Depth From (m)	Result/Observation	Observer	Type
+325823			25/12/2017	Formation Top	1697	Eumerella Formation	Shannon Herley	Core
+420865			25/12/2017	Formation Top	1611	Eumerella Formation	Shannon Herley	Core
+325455			25/12/2017	Formation Top	1738.8	Eumerella Formation	Shannon Herley	Core
+325891			25/12/2017	Formation Top	1588	Eumerella Formation	Shannon Herley	Core
+949746			25/12/2017	Formation Top	1660	Eumerella Formation	Shannon Herley	Core
+325824			25/12/2017	Formation Top	1750	Eumerella Formation	Shannon Herley	Core
+949750			25/12/2017	Formation Top	1887.4	Eumerella Formation	Shannon Herley	Core
+949762			25/12/2017	Formation Top	2118	Eumerella Formation	Shannon Herley	Core
+325734			25/12/2017	Formation Top	2554.8	Eumerella Formation	Shannon Herley	Core
+420878			25/12/2017	Formation Top	1595	Eumerella Formation	Shannon Herley	Core
+420886			25/12/2017	Formation Top	1544	Eumerella Formation	Shannon Herley	Core
+353447			25/12/2017	Formation Top	1747	Eumerella Formation	Shannon Herley	Core
+420930			25/12/2017	Formation Top	1687	Eumerella Formation	Shannon Herley	Core
+312199			25/12/2017	Formation Top	765	Eumerella Formation	Shannon Herley	Core
+325733			25/12/2017	Formation Top	2230	Eumerella Formation	Shannon Herley	Core
+325890			25/12/2017	Formation Top	1780	Eumerella Formation	Shannon Herley	Core
+353516			25/12/2017	Formation Top	1903.9	Eumerella Formation	Shannon Herley	Core
+325892			25/12/2017	Formation Top	1382	Eumerella Formation	Shannon Herley	Core
+353479			25/12/2017	Formation Top	1402	Eumerella Formation	Shannon Herley	Core
+949789			25/12/2017	Formation Top	1630.9	Eumerella Formation	Shannon Herley	Core
+353446			25/12/2017	Formation Top	2592	Eumerella Formation	Shannon Herley	Core
+75064			25/12/2017	Formation Top	598.3	Eumerella Formation	Shannon Herley	Core
+353493			25/12/2017	Formation Top	1826	Eumerella Formation	Shannon Herley	Core
+949831			25/12/2017	Formation Top	1593.6	Eumerella Formation	Shannon Herley	Core
+353425			25/12/2017	Formation Top	1209.8	Eumerella Formation	Shannon Herley	Core

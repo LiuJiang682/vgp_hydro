@@ -52,21 +52,7 @@ public class VgpHydroLocationMetaDataValidatorTest {
 		assertThat(messageList.size(), is(equalTo(1)));
 		assertThat(messageList.get(0), is(equalTo("ERROR: Line 0: Template vgphydroLocMeta column Site_ID cannot be null or empty")));
 	}
-	
-	@Test
-	public void shouldReturnMissingColumnHeaderMessageWhenColumnHeadersIsNotProvided() {
-		//Given
-		givenTestInstance();
-		testInstance.init(TestFixture.getLocMetaData());
-		//When
-		Optional<List<String>> messages = testInstance.validate(templateParamMap, dataBean);
-		//Then
-		assertThat(messages.isPresent(), is(true));
-		List<String> messageList = messages.get();
-		assertThat(messageList.size(), is(equalTo(1)));
-		assertThat(messageList.get(0), is(equalTo("No column header has been passing down")));
-	}
-	
+		
 	@Test
 	public void shouldReturnIncorrectSizeMessageWhenStrsIsLT1() {
 		//Given

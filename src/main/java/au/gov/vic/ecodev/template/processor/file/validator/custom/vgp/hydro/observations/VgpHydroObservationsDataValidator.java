@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.samples.analysis;
+package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.observations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +17,9 @@ import au.gov.vic.ecodev.utils.constants.Constants.Numeral;
 import au.gov.vic.ecodev.utils.validator.common.ListSizeValidator;
 import au.gov.vic.ecodev.utils.validator.helper.ErrorMessageChecker;
 
-public class VgpHydroSamplesAnalysisDataValidator implements Validator {
+public class VgpHydroObservationsDataValidator implements Validator {
 
-	private static final String VGP_HYDRO_SAMPLES_ANALYSIS = "vgphydroSampAnal";
-	
+	private static final String VGP_HYDRO_OBSERVATIONS = "vgphydroObservation";
 	private String[] strs;
 	
 	@Override
@@ -38,27 +37,24 @@ public class VgpHydroSamplesAnalysisDataValidator implements Validator {
 		}
 		
 		if (null == strs) {
-			String message = "Samples analysis data record requires minimum 4 columns, only got 0";
+			String message = "Observations data record requires minimum 3 columns, only got 0";
 			messages.add(message);
 		} else if (strs.length < Numerals.FOUR) {
-			String message = "Samples analysis data record requires minimum 4 columns, only got " + strs.length;
+			String message = "Observations data record requires minimum 3 columns, only got " + strs.length;
 			messages.add(message);
 		} else {
 			List<String> columnHeaders = templateParamMap.get(Strings.COLUMN_HEADERS);
 			int columnCount = new ListSizeValidator(columnHeaders).validate(messages);
 			if (Numeral.INVALID_COLUMN_COUNT != columnCount) {
 				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
-						VgpHydroSamplesAnalysisMandatoryHeaders.SITE_ID.getCode(), 
-						VGP_HYDRO_SAMPLES_ANALYSIS).validate(messages);
+						VgpHydroObservationsMandatoryHeaders.SITE_ID.getCode(), 
+						VGP_HYDRO_OBSERVATIONS).validate(messages);
 				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
-						VgpHydroSamplesAnalysisMandatoryHeaders.PARAM.getCode(), 
-						VGP_HYDRO_SAMPLES_ANALYSIS).validate(messages);
+						VgpHydroObservationsMandatoryHeaders.IGSN.getCode(), 
+						VGP_HYDRO_OBSERVATIONS).validate(messages);
 				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
-						VgpHydroSamplesAnalysisMandatoryHeaders.RESULT.getCode(), 
-						VGP_HYDRO_SAMPLES_ANALYSIS).validate(messages);
-				new MandatoryStringDataValidator(strs, currentLine, columnHeaders,
-						VgpHydroSamplesAnalysisMandatoryHeaders.UOM.getCode(), 
-						VGP_HYDRO_SAMPLES_ANALYSIS).validate(messages);
+						VgpHydroObservationsMandatoryHeaders.SAMPLE_TIME.getCode(), 
+						VGP_HYDRO_OBSERVATIONS).validate(messages);
 			}
 		}
 		

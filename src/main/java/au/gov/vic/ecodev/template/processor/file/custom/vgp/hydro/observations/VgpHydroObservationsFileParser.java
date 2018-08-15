@@ -1,4 +1,4 @@
-package au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.location.meta;
+package au.gov.vic.ecodev.template.processor.file.custom.vgp.hydro.observations;
 
 import java.io.File;
 import java.io.FileReader;
@@ -16,35 +16,34 @@ import au.gov.vic.ecodev.mrt.template.processor.exception.TemplateProcessorExcep
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.validator.Validator;
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
-import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.location.meta.VgpHydroLocationMetaValidatorFactory;
-import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroLocMetaTemplate;
+import au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro.observations.VgpHydroObservationsValidatorFactory;
+import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroObservationsTemplate;
 import au.gov.vic.ecodev.utils.file.finder.DirectoryTreeReverseTraversalZipFileFinder;
 import au.gov.vic.ecodev.utils.file.helper.MessageHandler;
 
-public class VgpHydroLocationMetaFileParser {
+public class VgpHydroObservationsFileParser {
 
-	private static final Logger LOGGER = Logger.getLogger(VgpHydroLocationMetaFileParser.class);
+	private static final Logger LOGGER = Logger.getLogger(VgpHydroObservationsFileParser.class);
 	
 	private final File file;
 	private final TemplateProcessorContext templateProcessorContext;
 	
-	public VgpHydroLocationMetaFileParser(File file, TemplateProcessorContext templateProcessorContext) {
+	public VgpHydroObservationsFileParser(final File file, 
+			final TemplateProcessorContext templateProcessorContext) {
 		if (null == file) {
-			throw new IllegalArgumentException("VgpHydroFileParser:file parameter cannot be null!");
+			throw new IllegalArgumentException("VgpHydroObservationsFileParser:file parameter cannot be null!");
 		}
 		this.file = file;
-		if (null == templateProcessorContext) {
-			throw new IllegalArgumentException("VgpHydroFileParser:templateProcessorContext parameter cannot be null!");
-		}
 		this.templateProcessorContext = templateProcessorContext;
 	}
-
+	
 	public void parse() throws Exception {
 		Map<String, List<String>> templateParamMap = new HashMap<>();
-		Template dataBean = new VgpHydroLocMetaTemplate();
+		Template dataBean = new VgpHydroObservationsTemplate();
 		String zipFile = new DirectoryTreeReverseTraversalZipFileFinder(file.getParent()).findZipFile();
 
-		VgpHydroLocationMetaValidatorFactory vgpHydroValidatorFactory = new VgpHydroLocationMetaValidatorFactory();
+		VgpHydroObservationsValidatorFactory vgpHydroObservationsValidatorFactory =
+				new VgpHydroObservationsValidatorFactory();
 		
 		LineNumberReader lineNumberReader = getLineNumberReader();
 		
@@ -53,7 +52,7 @@ public class VgpHydroLocationMetaFileParser {
 			LOGGER.info(line);
 			int lineNumber = lineNumberReader.getLineNumber();
 			templateParamMap.put(Strings.CURRENT_LINE, Arrays.asList(String.valueOf(lineNumber)));
-			Validator validator = vgpHydroValidatorFactory.getLineValidator(line);
+			Validator validator = vgpHydroObservationsValidatorFactory.getLineValidator(line);
 			Optional<List<String>> errorMessage = validator.validate(templateParamMap, 
 					dataBean);
 			if (errorMessage.isPresent()) {
@@ -70,8 +69,9 @@ public class VgpHydroLocationMetaFileParser {
 			}
 		}
 	}
-
+	
 	private LineNumberReader getLineNumberReader() throws Exception {
 		return new LineNumberReader(new FileReader(file.getAbsolutePath()));
 	}
+
 }
