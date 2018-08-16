@@ -44,8 +44,8 @@ public class TestFixture {
 		return new File("src/test/resources/testData/Obs_20180813.txt");
 	}
 
-	public static final String VGP_HYDRO_OBSERVATIONS_HEADERS = "SITE_ID\tSample ID\tIGSN\tDate/Date_Time\tParameter\tDepth From (m)\tResult/Observation\tObserver\tType";
-	public static final String VGP_HYDRO_OBSERVATIONS_DATAS = "325823\t\tIGSN\t25/12/2017 18:00\tFormation Top\t1697\tEumerella Formation\tShannon Herley\tCore";
+	public static final String VGP_HYDRO_OBSERVATIONS_HEADERS = "SITE_ID\tSample_ID\tIGSN\tDate/Date_Time\tParameter\tDepth From (m)\tDepth To (m)\tResult/Observation\tObserver\tType";
+	public static final String VGP_HYDRO_OBSERVATIONS_DATAS = "325823\t\tIGSN\t25/12/2017 18:00\tFormation Top\t1697\t1700\tEumerella Formation\tShannon Herley\tCore";
 	
 	public static String[] getObservationHeaders() {
 		return VGP_HYDRO_OBSERVATIONS_HEADERS.split(Strings.TAB);

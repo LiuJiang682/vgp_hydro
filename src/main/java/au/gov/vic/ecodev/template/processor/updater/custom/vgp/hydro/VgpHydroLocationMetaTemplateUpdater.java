@@ -5,14 +5,12 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import au.gov.vic.ecodev.common.util.IDGenerator;
 import au.gov.vic.ecodev.mrt.model.sl4.Site;
 import au.gov.vic.ecodev.mrt.template.processor.exception.TemplateProcessorException;
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.persistent.Dao;
 import au.gov.vic.ecodev.mrt.template.processor.update.TemplateUpdater;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
-import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroEntity;
 import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroTemplateValue;
 import au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro.VgpHydroLocationMetaDaoImpl;
 
