@@ -46,7 +46,7 @@ public class SampleMetaBuilder {
 	public SampleMeta build() {
 		DataValueHelper dataValueHelper = new DataValueHelper();
 		SampleMeta sampleMeta = new SampleMeta();
-		sampleMeta.setId(IDGenerator.getUID().longValue());
+		sampleMeta.setId(IDGenerator.getUIDAsAbsLongValue());
 		sampleMeta.setLoaderId(sessionId);
 		sampleMeta.setSiteId(dataValueHelper
 				.getDataValueAsLong(headers, datas, HEADER_SITE_ID));

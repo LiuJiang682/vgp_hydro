@@ -31,7 +31,7 @@ public class SampleAnalysisBuilder {
 	public SampleAnalysis build() {
 		DataValueHelper dataValueHelper = new DataValueHelper();
 		SampleAnalysis sampleAnalysis = new SampleAnalysis();
-		sampleAnalysis.setId(IDGenerator.getUID().longValue());
+		sampleAnalysis.setId(IDGenerator.getUIDAsAbsLongValue());
 		sampleAnalysis.setLoaderId(sessionId);
 		sampleAnalysis.setSampleId(dataValueHelper.getDataValueAsLong(headers, datas, "Sample_ID"));
 		sampleAnalysis.setIgsn(dataValueHelper.getDataValueAsString(headers, datas, "IGSN"));
