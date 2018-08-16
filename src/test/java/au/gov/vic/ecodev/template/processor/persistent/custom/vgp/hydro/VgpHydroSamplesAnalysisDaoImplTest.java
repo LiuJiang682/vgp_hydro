@@ -70,6 +70,16 @@ public class VgpHydroSamplesAnalysisDaoImplTest {
 		assertThat(sampleAnalysis.getAnanlysisMethod(), is(equalTo("ref1")));
 		assertThat(sampleAnalysis.getLor(), is(equalTo("1")));
 	}
+
+	@Test
+	public void shouldPopulateJdbcTemplate() {
+		//Given
+		//When
+		testInstance.setJdbcTemplate(jdbcTemplate);
+		//Then
+		JdbcTemplate retrievedJdbcTemplate = Whitebox.getInternalState(testInstance, "jdbcTemplate");
+		assertThat(retrievedJdbcTemplate, is(equalTo(jdbcTemplate)));
+	}
 	
 	private SampleAnalysis getSampleAnalysis(Timestamp timestamp) {
 		SampleAnalysis sampleAnalysis = new SampleAnalysis();
@@ -85,15 +95,5 @@ public class VgpHydroSamplesAnalysisDaoImplTest {
 		sampleAnalysis.setAnanlysisMethod("Anal_Meth");
 		sampleAnalysis.setLor("LOR");
 		return sampleAnalysis;
-	}
-
-	@Test
-	public void shouldPopulateJdbcTemplate() {
-		//Given
-		//When
-		testInstance.setJdbcTemplate(jdbcTemplate);
-		//Then
-		JdbcTemplate retrievedJdbcTemplate = Whitebox.getInternalState(testInstance, "jdbcTemplate");
-		assertThat(retrievedJdbcTemplate, is(equalTo(jdbcTemplate)));
 	}
 }
