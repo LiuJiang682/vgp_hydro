@@ -16,7 +16,7 @@ public class VgpHydroSamplesMetaValidatorFactoryTest {
 	private VgpHydroSamplesMetaValidatorFactory testInstance;
 	
 	@Test
-	public void shouldReturnHeaderValidator() {
+	public void shouldReturnHeaderValidator() throws Exception {
 		//Given
 		givenTestInstance();
 		//When
@@ -27,7 +27,7 @@ public class VgpHydroSamplesMetaValidatorFactoryTest {
 	}
 	
 	@Test
-	public void shouldReturnDataValidator() {
+	public void shouldReturnDataValidator() throws Exception {
 		//Given
 		givenTestInstance();
 		//When
@@ -38,7 +38,7 @@ public class VgpHydroSamplesMetaValidatorFactoryTest {
 	}
 	
 	@Test
-	public void shouldReturnDefaultValidator() {
+	public void shouldReturnDefaultValidator() throws Exception {
 		//Given
 		givenTestInstance();
 		//When

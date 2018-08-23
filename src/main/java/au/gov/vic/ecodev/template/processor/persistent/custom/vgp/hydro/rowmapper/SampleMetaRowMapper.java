@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import au.gov.vic.ecodev.mrt.model.vgp.hydro.SampleMeta;
+import au.gov.vic.ecodev.template.constants.Constants.Strings;
 
 public class SampleMetaRowMapper implements RowMapper<SampleMeta> {
 
@@ -15,30 +16,25 @@ public class SampleMetaRowMapper implements RowMapper<SampleMeta> {
 	private static final String COLUMN_HEADER_STAND_WATER_LEVEL = "STAND_WATER_LVL";
 	private static final String COLUMN_HEADER_SAMP_BOTTOM = "SAMP_BOTTOM";
 	private static final String COLUMN_HEADER_SAMP_TOP = "SAMP_TOP";
-	private static final String COLUMN_HEADER_IGSN = "IGSN";
 	private static final String COLUMN_HEADER_SAMP_DATE = "SAMP_DATE";
 	private static final String COLUMN_HEADER_PREP_CODE = "PREP_CODE";
 	private static final String COLUMN_HEADER_TYPE = "TYPE";
 	private static final String COLUMN_HEADER_LAB_CODE = "LAB_CODE";
 	private static final String COLUMN_HEADER_CORE_ID = "CORE_ID";
-	private static final String COLUMN_HEADER_SAMPLE_ID = "SAMPLE_ID";
-	private static final String COLUMN_HEADER_SITE_ID = "SITE_ID";
-	private static final String COLUMN_HEADER_LOADER_ID = "LOADER_ID";
-	private static final String COLUMN_HEADER_ID = "ID";
-
+	
 	@Override
 	public SampleMeta mapRow(ResultSet rs, int rowNum) throws SQLException {
 		SampleMeta sampleMeta = new SampleMeta();
-		sampleMeta.setId(rs.getLong(COLUMN_HEADER_ID));
-		sampleMeta.setLoaderId(rs.getLong(COLUMN_HEADER_LOADER_ID));
-		sampleMeta.setSiteId(rs.getLong(COLUMN_HEADER_SITE_ID));
-		sampleMeta.setSampleId(rs.getLong(COLUMN_HEADER_SAMPLE_ID));
+		sampleMeta.setId(rs.getLong(Strings.COLUMN_HEADER_ID));
+		sampleMeta.setLoaderId(rs.getLong(Strings.COLUMN_HEADER_LOADER_ID));
+		sampleMeta.setSiteId(rs.getLong(Strings.COLUMN_HEADER_SITE_ID));
+		sampleMeta.setSampleId(rs.getLong(Strings.COLUMN_HEADER_SAMPLE_ID));
 		sampleMeta.setCoreId(rs.getLong(COLUMN_HEADER_CORE_ID));
 		sampleMeta.setLabCode(rs.getString(COLUMN_HEADER_LAB_CODE));
 		sampleMeta.setType(rs.getString(COLUMN_HEADER_TYPE));
 		sampleMeta.setPrepCode(rs.getString(COLUMN_HEADER_PREP_CODE));
 		sampleMeta.setSampleDate(rs.getTimestamp(COLUMN_HEADER_SAMP_DATE));
-		sampleMeta.setIgsn(rs.getString(COLUMN_HEADER_IGSN));
+		sampleMeta.setIgsn(rs.getString(Strings.COLUMN_HEADER_IGSN));
 		sampleMeta.setSampleTop(rs.getBigDecimal(COLUMN_HEADER_SAMP_TOP));
 		sampleMeta.setSampleBottom(rs.getBigDecimal(COLUMN_HEADER_SAMP_BOTTOM));
 		sampleMeta.setStandardWaterLevel(rs.getBigDecimal(COLUMN_HEADER_STAND_WATER_LEVEL));

@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import au.gov.vic.ecodev.mrt.model.vgp.hydro.SampleMeta;
+import au.gov.vic.ecodev.template.constants.Constants.Strings;
 
 public class SampleMetaRowMapperTest {
 
@@ -22,10 +23,10 @@ public class SampleMetaRowMapperTest {
 	public void shouldReturnSampleMetaRecord() throws Exception {
 		//Given
 		ResultSet mockResultSet = Mockito.mock(ResultSet.class);
-		when(mockResultSet.getLong(eq("ID"))).thenReturn(6l);
-		when(mockResultSet.getLong(eq("LOADER_ID"))).thenReturn(23L);
-		when(mockResultSet.getLong(eq("SITE_ID"))).thenReturn(1l);
-		when(mockResultSet.getLong(eq("SAMPLE_ID"))).thenReturn(8l);
+		when(mockResultSet.getLong(eq(Strings.COLUMN_HEADER_ID))).thenReturn(6l);
+		when(mockResultSet.getLong(eq(Strings.COLUMN_HEADER_LOADER_ID))).thenReturn(23L);
+		when(mockResultSet.getLong(eq(Strings.COLUMN_HEADER_SITE_ID))).thenReturn(1l);
+		when(mockResultSet.getLong(eq(Strings.COLUMN_HEADER_SAMPLE_ID))).thenReturn(8l);
 		when(mockResultSet.getLong(eq("CORE_ID"))).thenReturn(7L);
 		when(mockResultSet.getString(eq("LAB_CODE"))).thenReturn("l");
 		when(mockResultSet.getString(eq("TYPE"))).thenReturn("t1");

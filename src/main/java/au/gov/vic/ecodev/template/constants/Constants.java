@@ -17,6 +17,11 @@ public interface Constants {
 		static final String EMPTY = "";
 		static final String COMMA = ",";
 		static final String UNDER_LINE = "_";
+		static final String COLUMN_HEADER_ID = "ID";
+		static final String COLUMN_HEADER_LOADER_ID = "LOADER_ID";
+		static final String COLUMN_HEADER_SITE_ID = "SITE_ID";
+		static final String COLUMN_HEADER_SAMPLE_ID = "SAMPLE_ID";
+		static final String COLUMN_HEADER_IGSN = "IGSN";
 	}
 	
 	interface Numerals {

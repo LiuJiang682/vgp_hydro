@@ -16,7 +16,7 @@ public class VgpHydroObservationsValidatorFactoryTest {
 	private VgpHydroObservationsValidatorFactory testInstance;
 	
 	@Test
-	public void shouldReturnHeaderValidatorWhenHeaderLineProvided() {
+	public void shouldReturnHeaderValidatorWhenHeaderLineProvided() throws Exception {
 		//Given
 		givenTestInstance();
 		//When
@@ -27,7 +27,7 @@ public class VgpHydroObservationsValidatorFactoryTest {
 	}
 	
 	@Test
-	public void shouldReturnDataValidatorWhenDataLineProvided() {
+	public void shouldReturnDataValidatorWhenDataLineProvided() throws Exception {
 		//Given
 		givenTestInstance();
 		//When
@@ -38,7 +38,7 @@ public class VgpHydroObservationsValidatorFactoryTest {
 	}
 	
 	@Test
-	public void shouldReturnDefaultValidator() {
+	public void shouldReturnDefaultValidator() throws Exception {
 		//Given
 		givenTestInstance();
 		//When

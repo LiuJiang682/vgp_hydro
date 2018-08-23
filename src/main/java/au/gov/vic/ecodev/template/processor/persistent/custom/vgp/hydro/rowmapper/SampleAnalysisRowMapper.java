@@ -6,16 +6,17 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import au.gov.vic.ecodev.mrt.model.vgp.hydro.SampleAnalysis;
+import au.gov.vic.ecodev.template.constants.Constants.Strings;
 
 public class SampleAnalysisRowMapper implements RowMapper<SampleAnalysis> {
 
 	@Override
 	public SampleAnalysis mapRow(ResultSet rs, int rowNum) throws SQLException {
 		SampleAnalysis sampleAnalysis = new SampleAnalysis();
-		sampleAnalysis.setId(rs.getLong("ID"));
-		sampleAnalysis.setLoaderId(rs.getLong("LOADER_ID"));
-		sampleAnalysis.setSampleId(rs.getLong("SAMPLE_ID"));
-		sampleAnalysis.setIgsn(rs.getString("IGSN"));
+		sampleAnalysis.setId(rs.getLong(Strings.COLUMN_HEADER_ID));
+		sampleAnalysis.setLoaderId(rs.getLong(Strings.COLUMN_HEADER_LOADER_ID));
+		sampleAnalysis.setSampleId(rs.getLong(Strings.COLUMN_HEADER_SAMPLE_ID));
+		sampleAnalysis.setIgsn(rs.getString(Strings.COLUMN_HEADER_IGSN));
 		sampleAnalysis.setLabSampleNo(rs.getString("LAB_SAMP_NO"));
 		sampleAnalysis.setAnalysisDate(rs.getTimestamp("ANAL_DATE"));
 		sampleAnalysis.setParameter(rs.getString("PARAM"));
