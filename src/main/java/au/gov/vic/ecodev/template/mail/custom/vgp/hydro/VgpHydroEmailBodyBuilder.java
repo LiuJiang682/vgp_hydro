@@ -21,23 +21,23 @@ public class VgpHydroEmailBodyBuilder implements EmailBodyBuilder {
 		}
 		String directErrorMessage = templateProcessorContext.getMessage().getDirectErrorMessage();
 		if (StringUtils.isEmpty(directErrorMessage)) {
-			StringBuilder buf = new StringBuilder("Hi\n");
-			buf.append("\n");
+			StringBuilder buf = new StringBuilder("Hi<br/>");
+			buf.append("<br/>");
 			buf.append("The log file for batch: ");
 			buf.append(templateProcessorContext.getMessage().getBatchId());
 			buf.append(" is available at ");
 			buf.append(templateProcessorContext.getMessage().getLogFileName());
-			buf.append("\n\n");
+			buf.append("<br/><br/>");
 			buf.append("The successfull processed files at ");
 			buf.append(templateProcessorContext.getMessage().getPassedFileDirectory());
-			buf.append("\n\n");
+			buf.append("<br/><br/>");
 			buf.append("The failed processed files at ");
 			buf.append(templateProcessorContext.getMessage().getFailedFileDirectory());
 			
 			return buf.toString();
 		} else {
-			StringBuilder buf = new StringBuilder("Hi\n");
-			buf.append("\n");
+			StringBuilder buf = new StringBuilder("Hi<br/>");
+			buf.append("<br/>");
 			buf.append("The template file process is failed due to: ");
 			buf.append(directErrorMessage);
 			return buf.toString();

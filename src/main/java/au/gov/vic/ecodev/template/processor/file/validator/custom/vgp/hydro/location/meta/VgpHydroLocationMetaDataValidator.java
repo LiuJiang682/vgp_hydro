@@ -22,6 +22,10 @@ import au.gov.vic.ecodev.utils.validator.common.ListSizeValidator;
 
 public class VgpHydroLocationMetaDataValidator implements Validator {
 	
+	private static final String SINGLE_QUOTE = "\'";
+
+	private static final String DOUBLE_QUOTE = "\"";
+
 	private static final List<String> MANDATORY_FIELDS = Arrays.asList("SITE_ID");
 	
 	private static final List<String> NUMBER_FIELDS = Arrays.asList("EASTING", "NORTHING", "LATITUDE", "LONGITUDE", "KB", "ELEVATION", "BORE DIAMETER", "TD", "TVD");
@@ -91,6 +95,8 @@ public class VgpHydroLocationMetaDataValidator implements Validator {
 		boolean flag = true;
 		if (StringUtils.isNotBlank(value)) {
 			value = value.replaceAll(Strings.COMMA, Strings.EMPTY);
+			value = value.replaceAll(DOUBLE_QUOTE, Strings.EMPTY);
+			value = value.replaceAll(SINGLE_QUOTE, Strings.EMPTY);
 			if ((!NumberUtils.isParsable(value)) && (!NumberUtils.isCreatable(value))) {
 				flag = false;
 			}

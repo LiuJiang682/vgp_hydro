@@ -15,8 +15,11 @@ public class ObservationBuilder {
 	private final long sessionId;
 	private final List<String> headers;
 	private final List<String> datas;
+	private final String fileName;
+	private final int index;
 	
-	public ObservationBuilder(long sessionId, List<String> headers, List<String> datas) {
+	public ObservationBuilder(long sessionId, List<String> headers, List<String> datas, 
+			String fileName, int index) {
 		this.sessionId = sessionId;
 		if (CollectionUtils.isEmpty(headers)) {
 			throw new IllegalArgumentException("SampleAnalysisBuilder:headers parameter cannot be null!");
@@ -27,6 +30,8 @@ public class ObservationBuilder {
 		} else {
 			this.datas = datas;
 		}
+		this.fileName = fileName;
+		this.index = index;
 	}
 
 	public Observation build() {
@@ -37,6 +42,8 @@ public class ObservationBuilder {
 		observation.setSiteId(dataValueHelper.getDataValueAsLong(headers, datas, 
 				VgpHydroObservationsMandatoryHeaders.SITE_ID.getCode()));
 		observation.setSampleId(dataValueHelper.getDataValueAsLong(headers, datas, "Sample_ID"));
+		observation.setFileName(fileName);
+		observation.setRowNumber(String.valueOf(index));
 		observation.setIgsn(dataValueHelper.getDataValueAsString(headers, datas, 
 				VgpHydroObservationsMandatoryHeaders.IGSN.getCode()));
 		observation.setOccurTime(dataValueHelper.getDataValueAsTimestampToHour(headers, datas, 

@@ -6,14 +6,17 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 
+
 import au.gov.vic.ecodev.mrt.model.vgp.hydro.SampleMeta;
 import au.gov.vic.ecodev.mrt.template.processor.exception.TemplateProcessorException;
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.persistent.Dao;
 import au.gov.vic.ecodev.mrt.template.processor.update.TemplateUpdater;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
+import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro.VgpHydroSamplesMetaDaoImpl;
 import au.gov.vic.ecodev.template.processor.updater.custom.vgp.hydro.builder.SampleMetaBuilder;
+import au.gov.vic.ecodev.utils.file.helper.FileNameExtractionHelper;
 
 public class VgpHydroSamplesMetaTemplateUpdater implements TemplateUpdater {
 
@@ -36,12 +39,18 @@ public class VgpHydroSamplesMetaTemplateUpdater implements TemplateUpdater {
 			throw new TemplateProcessorException("Dao list cannot be null or empty!");
 		}
 		
+		String fileName = new FileNameExtractionHelper(template, Strings.CURRENT_FILE_NAME)
+				.doFileNameExtraction();
 		List<String> headers = template.get(String.valueOf(Numerals.ONE));
+		if (CollectionUtils.isEmpty(headers)) {
+			throw new IllegalArgumentException("VgpHydroSamplesMetaTemplateUpdater:update Headers cannot be null or empty!");
+		}
 		int len = template.getKeys().size();
 		Dao dao = daos.get(Numerals.ZERO);
-		for(int index = Numerals.TWO; index <= len; index++) {
+		for(int index = Numerals.TWO; index < len; index++) {
 			List<String> datas = template.get(String.valueOf(index));
-			SampleMeta sampleMeta = new SampleMetaBuilder(sessionId, headers, datas).build();
+			SampleMeta sampleMeta = new SampleMetaBuilder(sessionId, headers, datas, 
+					fileName, index).build();
 			dao.updateOrSave(sampleMeta);
 		}
 	}

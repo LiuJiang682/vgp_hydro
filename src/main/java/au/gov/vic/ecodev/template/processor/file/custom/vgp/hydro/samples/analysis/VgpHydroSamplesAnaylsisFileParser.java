@@ -65,6 +65,7 @@ public class VgpHydroSamplesAnaylsisFileParser {
 		}
 		
 		if (null != dataBean) {
+			dataBean.put(Strings.CURRENT_FILE_NAME, Arrays.asList(file.getName()));
 			if (templateProcessorContext.saveDataBean(dataBean)) {
 				templateProcessorContext.addPassedFiles(zipFile);
 			} else {

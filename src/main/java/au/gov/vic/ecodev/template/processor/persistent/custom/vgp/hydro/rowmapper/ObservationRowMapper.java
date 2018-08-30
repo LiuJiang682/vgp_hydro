@@ -17,6 +17,8 @@ public class ObservationRowMapper implements RowMapper<Observation> {
 		observation.setLoaderId(rs.getLong(Strings.COLUMN_HEADER_LOADER_ID));
 		observation.setSiteId(rs.getLong(Strings.COLUMN_HEADER_SITE_ID));
 		observation.setSampleId(rs.getLong(Strings.COLUMN_HEADER_SAMPLE_ID));
+		observation.setFileName(rs.getString(Strings.COLUMN_HEADER_FILE_NAME));
+		observation.setRowNumber(rs.getString(Strings.COLUMN_HEADER_ROW_NUMBER));
 		observation.setIgsn(rs.getString(Strings.COLUMN_HEADER_IGSN));
 		observation.setOccurTime(rs.getTimestamp("OCCUR_TIME"));
 		observation.setParameter(rs.getString("PARAM"));

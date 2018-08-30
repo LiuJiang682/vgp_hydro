@@ -13,7 +13,7 @@ public class VgpHydroSamplesAnalysisDaoImpl implements VgpHydroSamplesAnalysisDa
 
 	private static final Logger LOGGER = Logger.getLogger(VgpHydroSamplesAnalysisDaoImpl.class);
 
-	private static final String INSERT_SQL = "INSERT INTO SAMP_ANALYSIS values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_SQL = "INSERT INTO SAMP_ANALYSIS values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String SELECT_SQL = "SELECT * FROM SAMP_ANALYSIS WHERE id = ?";
 	
@@ -24,10 +24,11 @@ public class VgpHydroSamplesAnalysisDaoImpl implements VgpHydroSamplesAnalysisDa
 		SampleAnalysis sampleAnalysis = (SampleAnalysis)entity;
 		int row = jdbcTemplate.update(INSERT_SQL, 
 				new Object[] {sampleAnalysis.getId(), sampleAnalysis.getLoaderId(),
-						sampleAnalysis.getSampleId(), sampleAnalysis.getIgsn(),
-						sampleAnalysis.getLabSampleNo(), sampleAnalysis.getAnalysisDate(),
-						sampleAnalysis.getParameter(), sampleAnalysis.getUom(),
-						sampleAnalysis.getResult(), sampleAnalysis.getAnanlysisMethod(),
+						sampleAnalysis.getSampleId(), sampleAnalysis.getFileName(),
+						sampleAnalysis.getRowNumber(), sampleAnalysis.getIgsn(), 
+						sampleAnalysis.getLabSampleNo(), sampleAnalysis.getAnalysisDate(), 
+						sampleAnalysis.getParameter(), sampleAnalysis.getUom(), 
+						sampleAnalysis.getResult(), sampleAnalysis.getAnanlysisMethod(), 
 						sampleAnalysis.getLor()});
 		return Numerals.ONE ==  row;
 	}

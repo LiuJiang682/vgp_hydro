@@ -19,6 +19,7 @@ import au.gov.vic.ecodev.mrt.template.processor.exception.TemplateProcessorExcep
 import au.gov.vic.ecodev.mrt.template.processor.model.Entity;
 import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.persistent.Dao;
+import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.custom.vgp.hydro.TestFixture;
 import au.gov.vic.ecodev.template.processor.model.custom.vgp.hydro.VgpHydroSamplesMetaTemplate;
 import au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro.VgpHydroSamplesMetaDaoImpl;
@@ -37,6 +38,7 @@ public class VgpHydroSamplesMetaTemplateUpdaterTest {
 		List<String> headers = Arrays.asList(TestFixture.getSamplesMetaHeaders());
 		template.put("1", headers);
 		template.put("2", Arrays.asList(TestFixture.getSamplesMetaData()));
+		template.put(Strings.CURRENT_FILE_NAME, Arrays.asList("myTest.txt"));
 		//When
 		testInstance.update(1, template);
 		//Then

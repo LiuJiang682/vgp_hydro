@@ -12,8 +12,10 @@ import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.persistent.Dao;
 import au.gov.vic.ecodev.mrt.template.processor.update.TemplateUpdater;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
+import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro.VgpHydroObservationsDaoImpl;
 import au.gov.vic.ecodev.template.processor.updater.custom.vgp.hydro.builder.ObservationBuilder;
+import au.gov.vic.ecodev.utils.file.helper.FileNameExtractionHelper;
 
 public class VgpHydroObservationsTemplateUpdater implements TemplateUpdater {
 
@@ -35,13 +37,15 @@ public class VgpHydroObservationsTemplateUpdater implements TemplateUpdater {
 			throw new TemplateProcessorException("VgpHydroObservationsTemplateUpdater -- daos list cannot be null or empty!");
 		}
 		
+		String fileName = new FileNameExtractionHelper(template, Strings.CURRENT_FILE_NAME)
+				.doFileNameExtraction();
 		List<String> headers = template.get(String.valueOf(Numerals.ONE));
 		int len = template.getKeys().size();
 		Dao dao = daos.get(Numerals.ZERO);
-		for(int index = Numerals.TWO; index <= len; index++) {
+		for(int index = Numerals.TWO; index < len; index++) {
 			List<String> datas = template.get(String.valueOf(index));
-			Observation observation = new ObservationBuilder(sessionId, headers, datas)
-					.build();
+			Observation observation = new ObservationBuilder(sessionId, headers, datas, 
+					fileName, index).build();
 			dao.updateOrSave(observation);
 		}
 	}

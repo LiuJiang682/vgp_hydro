@@ -29,6 +29,8 @@ public class SampleMetaRowMapper implements RowMapper<SampleMeta> {
 		sampleMeta.setLoaderId(rs.getLong(Strings.COLUMN_HEADER_LOADER_ID));
 		sampleMeta.setSiteId(rs.getLong(Strings.COLUMN_HEADER_SITE_ID));
 		sampleMeta.setSampleId(rs.getLong(Strings.COLUMN_HEADER_SAMPLE_ID));
+		sampleMeta.setFileName(rs.getString(Strings.COLUMN_HEADER_FILE_NAME));
+		sampleMeta.setRowNumber(rs.getString(Strings.COLUMN_HEADER_ROW_NUMBER));
 		sampleMeta.setCoreId(rs.getLong(COLUMN_HEADER_CORE_ID));
 		sampleMeta.setLabCode(rs.getString(COLUMN_HEADER_LAB_CODE));
 		sampleMeta.setType(rs.getString(COLUMN_HEADER_TYPE));

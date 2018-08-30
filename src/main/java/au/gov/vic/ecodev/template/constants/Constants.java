@@ -22,6 +22,9 @@ public interface Constants {
 		static final String COLUMN_HEADER_SITE_ID = "SITE_ID";
 		static final String COLUMN_HEADER_SAMPLE_ID = "SAMPLE_ID";
 		static final String COLUMN_HEADER_IGSN = "IGSN";
+		static final String CURRENT_FILE_NAME = "currentFileName";
+		String COLUMN_HEADER_FILE_NAME = "FILE_NAME";
+		String COLUMN_HEADER_ROW_NUMBER = "ROW_NUMBER";
 	}
 	
 	interface Numerals {

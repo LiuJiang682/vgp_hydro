@@ -64,6 +64,8 @@ public class VgpHydroSamplesAnalysisDaoImplTest {
 		assertThat(sampleAnalysis.getId(), is(equalTo(1l)));
 		assertThat(sampleAnalysis.getLoaderId(), is(equalTo(1l)));
 		assertThat(sampleAnalysis.getSampleId(), is(equalTo(1l)));
+		assertThat(sampleAnalysis.getFileName(), is(equalTo("myTest.txt")));
+		assertThat(sampleAnalysis.getRowNumber(), is(equalTo("1")));
 		assertThat(sampleAnalysis.getParameter(), is(equalTo("abc")));
 		assertThat(sampleAnalysis.getUom(), is(equalTo("5")));
 		assertThat(sampleAnalysis.getResult(), is(equalTo("7")));
@@ -86,6 +88,8 @@ public class VgpHydroSamplesAnalysisDaoImplTest {
 		sampleAnalysis.setId(System.currentTimeMillis());
 		sampleAnalysis.setLoaderId(100l);
 		sampleAnalysis.setSampleId(123l);
+		sampleAnalysis.setFileName("myTest.txt");
+		sampleAnalysis.setRowNumber("1");
 		sampleAnalysis.setIgsn("IGSN");
 		sampleAnalysis.setLabSampleNo("LabSampleNo");
 		sampleAnalysis.setAnalysisDate(timestamp);

@@ -3,6 +3,7 @@ package au.gov.vic.ecodev.template.processor.file.validator.custom.vgp.hydro;
 import java.util.List;
 import java.util.OptionalInt;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import au.gov.vic.ecodev.template.constants.Constants.Strings;
@@ -34,6 +35,9 @@ public class MandatoryNumberDataValidator {
 			String string = null;
 			if (index < strs.length) {
 				string = strs[index];
+			}
+			if (StringUtils.isNotBlank(string)) {
+				string = string.trim();
 			}
 			if((!NumberUtils.isParsable(string)) 
 					&& (!NumberUtils.isCreatable(string))) {

@@ -99,6 +99,8 @@ public class VgpHydroSamplesMetaDaoImplTest {
 		entity.setLoaderId(100);
 		entity.setSiteId(123);
 		entity.setSampleId(456);
+		entity.setFileName("myTest.txt");
+		entity.setRowNumber("1");
 		entity.setCoreId(789);
 		entity.setLabCode("l");
 		entity.setType("t1");

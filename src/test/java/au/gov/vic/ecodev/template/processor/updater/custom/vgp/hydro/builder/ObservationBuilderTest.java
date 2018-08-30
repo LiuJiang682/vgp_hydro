@@ -55,7 +55,7 @@ public class ObservationBuilderTest {
 		List<String> headers = Arrays.asList(TestFixture.getSamplesAnalysisHeaders());
 		List<String> datas = null;
 		//When
-		testInstance = new ObservationBuilder(sessionId, headers, datas);
+		testInstance = new ObservationBuilder(sessionId, headers, datas, null, 0);
 		//Then
 		assertThat(testInstance, is(notNullValue()));
 		List<String> retrieved = Whitebox.getInternalState(testInstance, "datas");
@@ -69,7 +69,7 @@ public class ObservationBuilderTest {
 		List<String> header = null;
 		List<String> datas = null;
 		//When
-		new ObservationBuilder(sessionId, header, datas);
+		new ObservationBuilder(sessionId, header, datas, null, 0);
 		fail("Program reached unexpected point!");
 	}
 	
@@ -86,6 +86,6 @@ public class ObservationBuilderTest {
 		sessionId = System.currentTimeMillis();
 		List<String> headers = Arrays.asList(TestFixture.getObservationHeaders());
 		List<String> datas = Arrays.asList(TestFixture.getObservationsDatas());
-		testInstance = new ObservationBuilder(sessionId, headers, datas);
+		testInstance = new ObservationBuilder(sessionId, headers, datas, "myTest.txt", 0);
 	}
 }

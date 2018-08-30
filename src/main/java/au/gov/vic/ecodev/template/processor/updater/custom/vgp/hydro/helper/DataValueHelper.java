@@ -18,6 +18,9 @@ public class DataValueHelper {
 
 	private static final Logger LOGGER = Logger.getLogger(DataValueHelper.class);
 	
+	private static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";
+	private static final String DATE_FORMAT = "dd/MM/yyyy";
+	
 	public final Timestamp getDataValueAsTimestampToDate(final List<String> headers, 
 			final List<String> datas, final String fieldName) {
 		String value = null;
@@ -52,7 +55,13 @@ public class DataValueHelper {
 		}
 		try {
 			if (StringUtils.isNotBlank(value)) {
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+				String dateFormat = null;
+				if (DATE_FORMAT.length() == value.length()) {
+					dateFormat = DATE_FORMAT;
+				} else {
+					dateFormat = DATE_TIME_FORMAT;
+				}
+				SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 				Date date = sdf.parse(value);
 				return new Timestamp(date.getTime());
 			}

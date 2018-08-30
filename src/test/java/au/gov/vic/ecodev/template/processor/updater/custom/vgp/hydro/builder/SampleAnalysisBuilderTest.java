@@ -47,7 +47,7 @@ public class SampleAnalysisBuilderTest {
 		List<String> headers = Arrays.asList(TestFixture.getSamplesAnalysisHeaders());
 		List<String> datas = null;
 		//When
-		testInstance = new SampleAnalysisBuilder(sessionId, headers, datas);
+		testInstance = new SampleAnalysisBuilder(sessionId, headers, datas, null, 0);
 		//Then
 		assertThat(testInstance, is(notNullValue()));
 		List<String> retrieved = Whitebox.getInternalState(testInstance, "datas");
@@ -61,7 +61,7 @@ public class SampleAnalysisBuilderTest {
 		List<String> header = null;
 		List<String> datas = null;
 		//When
-		new SampleAnalysisBuilder(sessionId, header, datas);
+		new SampleAnalysisBuilder(sessionId, header, datas, null, 0);
 		fail("Program reached unexpected point!");
 	}
 	
@@ -78,6 +78,6 @@ public class SampleAnalysisBuilderTest {
 		long sessionId = System.currentTimeMillis();
 		List<String> headers = Arrays.asList(TestFixture.getSamplesAnalysisHeaders());
 		List<String> datas = Arrays.asList(TestFixture.getSamplesAnalysisDatas());
-		testInstance = new SampleAnalysisBuilder(sessionId, headers, datas);
+		testInstance = new SampleAnalysisBuilder(sessionId, headers, datas, "myTest.txt", 0);
 	}
 }

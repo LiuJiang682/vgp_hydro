@@ -14,8 +14,11 @@ public class SampleAnalysisBuilder {
 	private final long sessionId;
 	private final List<String> headers;
 	private final List<String> datas;
+	private final String fileName;
+	private final int index;
 	
-	public SampleAnalysisBuilder(long sessionId, List<String> headers, List<String> datas) {
+	public SampleAnalysisBuilder(long sessionId, List<String> headers, List<String> datas,
+			String fileName, int index) {
 		this.sessionId = sessionId;
 		if (CollectionUtils.isEmpty(headers)) {
 			throw new IllegalArgumentException("SampleAnalysisBuilder:headers parameter cannot be null!");
@@ -26,6 +29,8 @@ public class SampleAnalysisBuilder {
 		} else {
 			this.datas = datas;
 		}
+		this.fileName = fileName;
+		this.index = index;
 	}
 
 	public SampleAnalysis build() {
@@ -34,6 +39,8 @@ public class SampleAnalysisBuilder {
 		sampleAnalysis.setId(IDGenerator.getUIDAsAbsLongValue());
 		sampleAnalysis.setLoaderId(sessionId);
 		sampleAnalysis.setSampleId(dataValueHelper.getDataValueAsLong(headers, datas, "Sample_ID"));
+		sampleAnalysis.setFileName(fileName);
+		sampleAnalysis.setRowNumber(String.valueOf(index));
 		sampleAnalysis.setIgsn(dataValueHelper.getDataValueAsString(headers, datas, "IGSN"));
 		sampleAnalysis.setLabSampleNo(dataValueHelper.getDataValueAsString(headers, datas, "Lab_Sample_Number"));
 		sampleAnalysis.setAnalysisDate(dataValueHelper.getDataValueAsTimestampToHour(headers, datas, "Anaylsed_Date"));

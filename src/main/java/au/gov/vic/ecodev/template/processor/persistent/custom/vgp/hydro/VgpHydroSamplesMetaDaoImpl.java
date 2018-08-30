@@ -13,7 +13,7 @@ public class VgpHydroSamplesMetaDaoImpl implements VgpHydroSamplesMetaDao {
 
 	private static final Logger LOGGER = Logger.getLogger(VgpHydroSamplesMetaDaoImpl.class);
 	
-	private static final String INSERT_SQL = "INSERT INTO SAMP_METADATA values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_SQL = "INSERT INTO SAMP_METADATA values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String SELECT_SQL = "SELECT * FROM SAMP_METADATA WHERE ID = ?";
 
@@ -23,10 +23,13 @@ public class VgpHydroSamplesMetaDaoImpl implements VgpHydroSamplesMetaDao {
 	public boolean updateOrSave(Entity entity) {
 		SampleMeta sampleMeta = (SampleMeta) entity;
 		int row = jdbcTemplate.update(INSERT_SQL, 
-				new Object[] {sampleMeta.getId(), sampleMeta.getLoaderId(), sampleMeta.getSiteId(),
-						sampleMeta.getSampleId(), sampleMeta.getCoreId(), sampleMeta.getLabCode(),
-						sampleMeta.getType(), sampleMeta.getPrepCode(), sampleMeta.getSampleDate(),
-						sampleMeta.getIgsn(), sampleMeta.getSampleTop(), sampleMeta.getSampleBottom(),
+				new Object[] {sampleMeta.getId(), sampleMeta.getLoaderId(), 
+						sampleMeta.getSiteId(), sampleMeta.getSampleId(), 
+						sampleMeta.getFileName(), sampleMeta.getRowNumber(),
+						sampleMeta.getCoreId(), sampleMeta.getLabCode(),
+						sampleMeta.getType(), sampleMeta.getPrepCode(),
+						sampleMeta.getSampleDate(), sampleMeta.getIgsn(), 
+						sampleMeta.getSampleTop(), sampleMeta.getSampleBottom(),
 						sampleMeta.getStandardWaterLevel(), sampleMeta.getPumpingDepth(),
 						sampleMeta.getReference(), sampleMeta.getSampleAreaDesc()});
 		return Numerals.ONE == row;

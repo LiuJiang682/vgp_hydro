@@ -1,1 +1,1 @@
-INSERT INTO OBSERVATIONS values(1, 1, 1, 1, 'IGSN', systimestamp, 'abc', 5, 7, 'Result', 'Observer', 'Type');
+INSERT INTO OBSERVATIONS values(1, 1, 1, 1, 'myTest.txt', '1', 'IGSN', systimestamp, 'abc', 5, 7, 'Result', 'Observer', 'Type');

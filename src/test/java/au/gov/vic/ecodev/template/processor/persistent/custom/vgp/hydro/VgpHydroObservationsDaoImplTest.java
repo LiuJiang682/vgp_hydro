@@ -18,7 +18,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import au.gov.vic.ecodev.mrt.model.vgp.hydro.Observation;
-import au.gov.vic.ecodev.mrt.model.vgp.hydro.SampleAnalysis;
 
 public class VgpHydroObservationsDaoImplTest {
 
@@ -66,6 +65,8 @@ public class VgpHydroObservationsDaoImplTest {
 		assertThat(observation.getId(), is(equalTo(1l)));
 		assertThat(observation.getLoaderId(), is(equalTo(1l)));
 		assertThat(observation.getSampleId(), is(equalTo(1l)));
+		assertThat(observation.getFileName(), is(equalTo("myTest.txt")));
+		assertThat(observation.getRowNumber(), is(equalTo("1")));
 		assertThat(observation.getIgsn(), is(equalTo("IGSN")));
 		assertThat(observation.getOccurTime(), is(notNullValue()));
 		assertThat(observation.getParameter(), is(equalTo("abc")));
@@ -87,12 +88,20 @@ public class VgpHydroObservationsDaoImplTest {
 		assertThat(retrievedJdbcTemplate, is(equalTo(jdbcTemplate)));
 	}
 	
+	@Test
+	public void shouldPrintColumns() {
+		testInstance.setJdbcTemplate(jdbcTemplate);
+		testInstance.printTableColumns();
+	}
+	
 	private Observation getObservation(Timestamp timestamp) {
 		Observation observation = new Observation();
 		observation.setId(12l);
 		observation.setLoaderId(34l);
 		observation.setSiteId(56l);
 		observation.setSampleId(78l);
+		observation.setFileName("myTest.txty");
+		observation.setRowNumber("1");
 		observation.setIgsn("IGSN");
 		observation.setOccurTime(timestamp);
 		observation.setParameter("Parameter");

@@ -12,8 +12,10 @@ import au.gov.vic.ecodev.mrt.template.processor.model.Template;
 import au.gov.vic.ecodev.mrt.template.processor.persistent.Dao;
 import au.gov.vic.ecodev.mrt.template.processor.update.TemplateUpdater;
 import au.gov.vic.ecodev.template.constants.Constants.Numerals;
+import au.gov.vic.ecodev.template.constants.Constants.Strings;
 import au.gov.vic.ecodev.template.processor.persistent.custom.vgp.hydro.VgpHydroSamplesAnalysisDaoImpl;
 import au.gov.vic.ecodev.template.processor.updater.custom.vgp.hydro.builder.SampleAnalysisBuilder;
+import au.gov.vic.ecodev.utils.file.helper.FileNameExtractionHelper;
 
 public class VgpHydroSamplesAnalysisTemplateUpdater implements TemplateUpdater {
 
@@ -35,13 +37,16 @@ public class VgpHydroSamplesAnalysisTemplateUpdater implements TemplateUpdater {
 			throw new TemplateProcessorException("Dao list cannot be null or empty!");
 		}
 		
+		String fileName = new FileNameExtractionHelper(template, Strings.CURRENT_FILE_NAME)
+				.doFileNameExtraction();
+		
 		List<String> headers = template.get(String.valueOf(Numerals.ONE));
 		int len = template.getKeys().size();
 		Dao dao = daos.get(Numerals.ZERO);
-		for(int index = Numerals.TWO; index <= len; index++) {
+		for(int index = Numerals.TWO; index < len; index++) {
 			List<String> datas = template.get(String.valueOf(index));
-			SampleAnalysis sampleMeta = new SampleAnalysisBuilder(sessionId, headers, datas)
-					.build();
+			SampleAnalysis sampleMeta = new SampleAnalysisBuilder(sessionId, headers, datas, 
+					fileName, index).build();
 			dao.updateOrSave(sampleMeta);
 		}
 	}

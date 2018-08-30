@@ -3,8 +3,6 @@ package au.gov.vic.ecodev.template.processor.updater.custom.vgp.hydro.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
-
 import au.gov.vic.ecodev.common.util.IDGenerator;
 import au.gov.vic.ecodev.mrt.model.vgp.hydro.SampleMeta;
 import au.gov.vic.ecodev.template.processor.updater.custom.vgp.hydro.helper.DataValueHelper;
@@ -25,22 +23,24 @@ public class SampleMetaBuilder {
 	private static final String HEADER_CORE_ID = "Core_ID";
 	private static final String HEADER_SAMPLE_ID = "Sample_ID";
 	private static final String HEADER_SITE_ID = "SITE_ID";
+	
 	private final long sessionId;
 	private final List<String> headers;
 	private final List<String> datas;
+	private final String fileName;
+	private final int index;
 	
 	public SampleMetaBuilder(final long sessionId, final List<String> headers, 
-			final List<String> datas) {
+			final List<String> datas, final String fileName, final int index) {
 		this.sessionId = sessionId;
-		if (CollectionUtils.isEmpty(headers)) {
-			throw new IllegalArgumentException("VgpHydroSamplesMeta Headers cannot be null or empty!");
-		}
 		this.headers = headers;
 		if (null == datas) {
 			this.datas = new ArrayList<>();
 		} else {
 			this.datas = datas;
 		}
+		this.fileName = fileName;
+		this.index = index;
 	}
 	
 	public SampleMeta build() {
@@ -52,6 +52,8 @@ public class SampleMetaBuilder {
 				.getDataValueAsLong(headers, datas, HEADER_SITE_ID));
 		sampleMeta.setSampleId(dataValueHelper
 				.getDataValueAsLong(headers, datas, HEADER_SAMPLE_ID));
+		sampleMeta.setFileName(fileName);
+		sampleMeta.setRowNumber(String.valueOf(index));
 		sampleMeta.setCoreId(dataValueHelper
 				.getDataValueAsLong(headers, datas, HEADER_CORE_ID));
 		sampleMeta.setLabCode(dataValueHelper

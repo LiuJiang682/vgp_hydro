@@ -1,11 +1,10 @@
 package au.gov.vic.ecodev.template.processor.updater.custom.vgp.hydro.builder;
 
-import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -70,29 +69,18 @@ public class SampleMetaBuilderTest {
 		headers = Arrays.asList(TestFixture.getSamplesMetaHeaders());
 		datas = null;
 		//When
-		testInstance = new SampleMetaBuilder(sessionId, headers, datas);
+		testInstance = new SampleMetaBuilder(sessionId, headers, datas, null , 0);
 		//Then
 		assertThat(testInstance, is(notNullValue()));
 		List<String> datas = Whitebox.getInternalState(testInstance, "datas");
 		assertThat(datas, is(notNullValue()));
 		assertThat(datas.isEmpty(), is(true));
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void shouldRaiseExceptionWhenHeaderIsNull() {
-		//Given
-		sessionId = System.currentTimeMillis();
-		headers = null;
-		datas = null;
-		//When
-		new SampleMetaBuilder(sessionId, headers, datas);
-		fail("Program reached unexpected point!");
-	}
 
 	private void givenTestInstance() {
 		sessionId = System.currentTimeMillis();
 		headers = Arrays.asList(TestFixture.getSamplesMetaHeaders());
 		datas = Arrays.asList(TestFixture.getSamplesMetaData());
-		testInstance = new SampleMetaBuilder(sessionId, headers, datas);
+		testInstance = new SampleMetaBuilder(sessionId, headers, datas, "myTest.txt", 0);
 	}
 }

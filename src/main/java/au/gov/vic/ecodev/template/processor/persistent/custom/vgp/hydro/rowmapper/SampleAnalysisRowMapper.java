@@ -16,6 +16,8 @@ public class SampleAnalysisRowMapper implements RowMapper<SampleAnalysis> {
 		sampleAnalysis.setId(rs.getLong(Strings.COLUMN_HEADER_ID));
 		sampleAnalysis.setLoaderId(rs.getLong(Strings.COLUMN_HEADER_LOADER_ID));
 		sampleAnalysis.setSampleId(rs.getLong(Strings.COLUMN_HEADER_SAMPLE_ID));
+		sampleAnalysis.setFileName(rs.getString(Strings.COLUMN_HEADER_FILE_NAME));
+		sampleAnalysis.setRowNumber(rs.getString(Strings.COLUMN_HEADER_ROW_NUMBER));
 		sampleAnalysis.setIgsn(rs.getString(Strings.COLUMN_HEADER_IGSN));
 		sampleAnalysis.setLabSampleNo(rs.getString("LAB_SAMP_NO"));
 		sampleAnalysis.setAnalysisDate(rs.getTimestamp("ANAL_DATE"));
